@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📰 A SAVOIR - Magazine Innovation Gratuit</title>
+    <meta name="description" content="Magazine gratuit d'innovation et technologie. Nouvelles découvertes chaque semaine.">
+    
+    <!-- Monétisation Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-VOTRE-ID" crossorigin="anonymous"></script>
+    
+    <!-- RSS Feed pour actualisation automatique -->
+    <link rel="alternate" type="application/rss+xml" title="A SAVOIR RSS" href="/feed.xml">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            position: relative;
+        }
+        
+        .free-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .title { 
+            font-size: 2.5rem; 
+            font-weight: 900; 
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle { 
+            font-size: 1.1rem; 
+            opacity: 0.9; 
+        }
+        
+        .update-info {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+        
+        /* Publicité Native Non-Intrusive */
+        .ad-container {
+            background: #fff;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 2rem 0;
+            text-align: center;
+            border-left: 4px solid #ffd700;
+        }
+        
+        .ad-label {
+            font-size: 0.8rem;
+            color: #6c757d;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+        
+        .nav-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+        
+        .nav-pill {
+            background: #667eea;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .nav-pill:hover, .nav-pill.active {
+            background: #764ba2;
+            transform: translateY(-2px);
+            color: white;
+            text-decoration: none;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .main-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .section {
+            display: none;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        .section h2 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #e9ecef;
+        }
+        
+        .article {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .article:last-child { border-bottom: none; }
+        
+        .article h3 {
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.3;
+        }
+        
+        .article-meta {
+            display: flex;
+            gap: 1rem;
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .article p {
+            margin-bottom: 1rem;
+            text-align: justify;
+            line-height: 1.7;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 0.2em 0.5em;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        
+        .stats-mini {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat-mini {
+            background: #f8f9ff;
+            padding: 0.8rem;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 3px solid #667eea;
+            flex: 1;
+            min-width: 100px;
+        }
+        
+        .stat-number {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #667eea;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.7rem;
+            color: #6c757d;
+            text-transform: uppercase;
+        }
+        
+        .quote-box {
+            background: #667eea;
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            font-style: italic;
+            text-align: center;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 4rem;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            opacity: 0.3;
+        }
+        
+        /* Sidebar Elements */
+        .sidebar-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .newsletter {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+        }
+        
+        .newsletter h3 {
+            color: white;
+        }
+        
+        .newsletter-input {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .newsletter-btn {
+            width: 100%;
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.5);
+            color: white;
+            padding: 0.8rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .newsletter-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .trending {
+            border-left: 4px solid #ff6b6b;
+        }
+        
+        .trending-item {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e9ecef;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .trending-item:hover {
+            background: #f8f9fa;
+            padding-left: 0.5rem;
+        }
+        
+        .trending-item:last-child {
+            border-bottom: none;
+        }
+        
+        .social-share {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .social-btn {
+            background: #667eea;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            flex: 1;
+            text-align: center;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+        
+        .social-btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            color: white;
+            text-decoration: none;
+        }
+        
+        .auto-update {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+        }
+        
+        .auto-update h3 {
+            color: white;
+        }
+        
+        .update-status {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: #333;
+            color: white;
+            margin-top: 3rem;
+            border-radius: 15px 15px 0 0;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer h3 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+        
+        .revenue-info {
+            background: rgba(255,215,0,0.1);
+            border: 1px solid rgba(255,215,0,0.3);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                order: -1;
+            }
+            
+            .title { font-size: 2rem; }
+            
+            .nav-pills {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .stats-mini {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="free-badge">🆓 100% GRATUIT</div>
+            <h1 class="title">📰 A SAVOIR</h1>
+            <p class="subtitle">Magazine Innovation & Découvertes - Mis à jour automatiquement</p>
+            <div class="update-info">
+                <strong>🔄 Dernière mise à jour :</strong> <span id="lastUpdate">Aujourd'hui</span> • 
+                <strong>📊 Prochaine :</strong> <span id="nextUpdate">Dans 3 jours</span>
+            </div>
+        </header>
+        
+        <!-- Publicité Header Non-Intrusive -->
+        <div class="ad-container">
+            <div class="ad-label">Publicité</div>
+            <div style="background: #f8f9fa; padding: 2rem; border-radius: 5px; color: #6c757d;">
+                [Espace publicitaire Google AdSense - 728x90]<br>
+                <small>Les revenus publicitaires permettent de maintenir ce magazine gratuit</small>
+            </div>
+        </div>
+        
+        <nav class="nav-pills">
+            <button class="nav-pill active" onclick="showSection('accueil')">🏠 Actualités</button>
+            <button class="nav-pill" onclick="showSection('sante')">🏥 Santé Tech</button>
+            <button class="nav-pill" onclick="showSection('innovation')">💡 Innovation</button>
+            <button class="nav-pill" onclick="showSection('decouvertes')">🌍 Découvertes</button>
+            <button class="nav-pill" onclick="showSection('femmes-tech')">👩‍💻 Femmes Tech</button>
+        </nav>
+
+        <div class="content-grid">
+            <main class="main-content">
+                <!-- SECTION ACCUEIL -->
+                <section id="accueil" class="section active">
+                    <h2>🚀 Dernières Actualités Innovation</h2>
+                    
+                    <div class="article">
+                        <h3>🤖 GPT-5 Révolutionne l'IA Conversationnelle</h3>
+                        <div class="article-meta">
+                            <span>📅 Il y a 2 heures</span>
+                            <span>👁️ 2.3k vues</span>
+                            <span>⏱️ 3 min de lecture</span>
+                        </div>
+                        <p>OpenAI dévoile <span class="highlight">GPT-5 avec des capacités de raisonnement</span> dépassant toutes les attentes. Le nouveau modèle comprend le contexte sur 10 millions de tokens et peut générer du code en temps réel.</p>
+                        
+                        <div class="stats-mini">
+                            <div class="stat-mini">
+                                <span class="stat-number">10M</span>
+                                <span class="stat-label">Tokens contexte</span>
+                            </div>
+                            <div class="stat-mini">
+                                <span class="stat-number">50x</span>
+                                <span class="stat-label">Plus rapide</span>
+                            </div>
+                            <div class="stat-mini">
+                                <span class="stat-number">99%</span>
+                                <span class="stat-label">Précision</span>
+                            </div>
+                        </div>
+                        
+                        <div class="social-share">
+                            <a href="#" class="social-btn">📱 Partager</a>
+                            <a href="#" class="social-btn">💌 Envoyer</a>
+                            <a href="#" class="social-btn">🔖 Sauver</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Pub Native Intégrée -->
+                    <div class="ad-container" style="margin: 2rem 0;">
+                        <div class="ad-label">Contenu Sponsorisé</div>
+                        <p><strong>🚀 Formations IA en Ligne</strong> - Apprenez l'intelligence artificielle avec des experts. <a href="#" style="color: #667eea;">Découvrir →</a></p>
+                    </div>
+                    
+                    <div class="article">
+                        <h3>🏥 Diagnostic Cancer par IA en 30 Secondes</h3>
+                        <div class="article-meta">
+                            <span>📅 Il y a 5 heures</span>
+                            <span>👁️ 1.8k vues</span>
+                            <span>⏱️ 4 min de lecture</span>
+                        </div>
+                        <p>Une startup française développe un <span class="highlight">algorithme de diagnostic ultra-rapide</span> capable de détecter 15 types de cancers avec 98% de précision en analysant une simple prise de sang.</p>
+                        
+                        <div class="quote-box">
+                            Cette innovation pourrait sauver des millions de vies grâce au diagnostic précoce - Dr. Marie Dubois, Oncologue
+                        </div>
+                    </div>
+                    
+                    <div class="article">
+                        <h3>🌍 Fusion Nucléaire : Percée Historique</h3>
+                        <div class="article-meta">
+                            <span>📅 Il y a 8 heures</span>
+                            <span>👁️ 3.1k vues</span>
+                            <span>⏱️ 5 min de lecture</span>
+                        </div>
+                        <p>Le laboratoire JET en Angleterre bat un nouveau record en <span class="highlight">maintenant la fusion pendant 6 minutes</span>, ouvrant la voie à l'énergie propre illimitée d'ici 2035.</p>
+                    </div>
+                </section>
+
+                <!-- SECTION SANTÉ -->
+                <section id="sante" class="section">
+                    <h2>🏥 Innovations Santé & IA Médicale</h2>
+                    
+                    <div class="article">
+                        <h3>🧬 Thérapie Génique Révolutionnaire</h3>
+                        <div class="article-meta">
+                            <span>📅 Aujourd'hui</span>
+                            <span>👁️ 980 vues</span>
+                        </div>
+                        <p>CRISPR 3.0 permet désormais de <span class="highlight">corriger les mutations génétiques</span> in vivo avec 99.8% de précision, révolutionnant le traitement des maladies héréditaires.</p>
+                    </div>
+                    
+                    <div class="article">
+                        <h3>🤖 Robots Chirurgiens Autonomes</h3>
+                        <div class="article-meta">
+                            <span>📅 Hier</span>
+                            <span>👁️ 1.2k vues</span>
+                        </div>
+                        <p>Le premier robot chirurgien entièrement autonome réalise <span class="highlight">50 opérations consécutives sans erreur</span>, surpassant les meilleurs chirurgiens humains.</p>
+                    </div>
+                </section>
+
+                <!-- SECTION INNOVATION -->
+                <section id="innovation" class="section">
+                    <h2>💡 Innovations Technologiques</h2>
+                    
+                    <div class="article">
+                        <h3>⚡ Batterie Révolutionnaire 10 Minutes</h3>
+                        <div class="article-meta">
+                            <span>📅 Aujourd'hui</span>
+                            <span>👁️ 2.1k vues</span>
+                        </div>
+                        <p>Une startup chinoise dévoile une <span class="highlight">batterie se chargeant en 10 minutes</span> avec 1000 km d'autonomie, changeant l'industrie automobile électrique.</p>
+                    </div>
+                </section>
+
+                <!-- SECTION DÉCOUVERTES -->
+                <section id="decouvertes" class="section">
+                    <h2>🌍 Découvertes Scientifiques</h2>
+                    
+                    <div class="article">
+                        <h3>🪐 Exoplanète Habitable Découverte</h3>
+                        <div class="article-meta">
+                            <span>📅 Il y a 12h</span>
+                            <span>👁️ 4.5k vues</span>
+                        </div>
+                        <p>Le télescope James Webb identifie <span class="highlight">une planète similaire à la Terre</span> à seulement 22 années-lumière, avec atmosphère et eau liquide confirmées.</p>
+                    </div>
+                </section>
+
+                <!-- SECTION FEMMES TECH -->
+                <section id="femmes-tech" class="section">
+                    <h2>👩‍💻 Femmes & Leadership Tech</h2>
+                    
+                    <div class="article">
+                        <h3>🚀 Record : 40% de Femmes CEO Tech</h3>
+                        <div class="article-meta">
+                            <span>📅 Aujourd'hui</span>
+                            <span>👁️ 1.7k vues</span>
+                        </div>
+                        <p>2024 marque un tournant avec <span class="highlight">40% des nouvelles startups tech</span> dirigées par des femmes, établissant un nouveau record historique.</p>
+                    </div>
+                </section>
+            </main>
+            
+            <aside class="sidebar">
+                <!-- Newsletter Gratuite -->
+                <div class="sidebar-card newsletter">
+                    <h3>📧 Newsletter Gratuite</h3>
+                    <p>Recevez les dernières innovations directement dans votre boîte mail !</p>
+                    <input type="email" class="newsletter-input" placeholder="votre@email.com" id="emailInput">
+                    <button class="newsletter-btn" onclick="subscribeNewsletter()">S'abonner Gratuitement</button>
+                    <small style="margin-top: 0.5rem; display: block; opacity: 0.8;">📊 Déjà 12,847 abonnés</small>
+                </div>
+                
+                <!-- Articles Tendance -->
+                <div class="sidebar-card trending">
+                    <h3>🔥 Tendances Actuelles</h3>
+                    <div class="trending-item" onclick="showTrendingArticle(1)">
+                        <strong>ChatGPT-5 vs Gemini Ultra</strong><br>
+                        <small>3.2k lectures aujourd'hui</small>
+                    </div>
+                    <div class="trending-item" onclick="showTrendingArticle(2)">
+                        <strong>Voitures Volantes 2025</strong><br>
+                        <small>2.8k lectures aujourd'hui</small>
+                    </div>
+                    <div class="trending-item" onclick="showTrendingArticle(3)">
+                        <strong>Quantum Computing Commercial</strong><br>
+                        <small>2.1k lectures aujourd'hui</small>
+                    </div>
+                </div>
+                
+                <!-- Mise à Jour Auto -->
+                <div class="sidebar-card auto-update">
+                    <h3>🔄 Mise à Jour Automatique</h3>
+                    <p>Ce magazine se met à jour automatiquement avec les dernières actualités mondiales traduites en français.</p>
+                    <div class="update-status">
+                        ⚡ Prochaine mise à jour : <strong>Dans 2h 34min</strong>
+                    </div>
+                </div>
+                
+                <!-- Info Revenus -->
+                <div class="sidebar-card">
+                    <div class="revenue-info">
+                        <strong>💰 Soutenez ce Magazine Gratuit</strong><br>
+                        <small>Les revenus publicitaires permettent de maintenir ce service gratuit pour tous les lecteurs</small>
+                    </div>
+                </div>
+                
+                <!-- Publicité Sidebar -->
+                <div class="ad-container">
+                    <div class="ad-label">Publicité</div>
+                    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 5px; text-align: center; color: #6c757d;">
+                        [Google AdSense<br>300x250]
+                    </div>
+                </div>
+            </aside>
+        </div>
+        
+        <footer class="footer">
+            <div class="footer-content">
+                <h3>📰 A SAVOIR - Magazine Gratuit</h3>
+                <p>Innovation • Découvertes • Technologie • Entièrement Gratuit</p>
+                <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #555;">
+                    <p><strong>🔄 Mise à jour automatique</strong> • <strong>🌍 Sources mondiales</strong> • <strong>🇫🇷 Traduit en français</strong></p>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+                        Revenus générés par publicité non-intrusive • Aucune donnée personnelle vendue • Service 100% gratuit
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Variables globales
+        let currentSection = 'accueil';
+        let subscribers = 12847;
+        
+        // Navigation entre sections
+        function showSection(sectionId) {
+            // Cacher toutes les sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Désactiver tous les boutons nav
+            document.querySelectorAll('.nav-pill').forEach(pill => {
+                pill.classList.remove('active');
+            });
+            
+            // Afficher la section demandée
+            document.getElementById(sectionId).classList.add('active');
+            event.target.classList.add('active');
+            
+            currentSection = sectionId;
+            
+            // Smooth scroll vers le top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Analytics simple (sans cookies)
+            console.log(`📖 Section consultée: ${sectionId} - ${new Date().toLocaleTimeString()}`);
+        }
+        
+        // Newsletter gratuite
+        function subscribeNewsletter() {
+            const email = document.getElementById('emailInput').value;
+            
+            if (!email || !email.includes('@')) {
+                alert('⚠️ Veuillez entrer un email valide');
+                return;
+            }
+            
+            // Simulation d'inscription (à remplacer par vraie API)
+            subscribers++;
+            alert(`✅ Merci ! Vous êtes maintenant abonné à notre newsletter gratuite.\n\n📊 Vous rejoignez ${subscribers.toLocaleString()} lecteurs !`);
+            
+            // Vider le champ
+            document.getElementById('emailInput').value = '';
+            
+            // Mettre à jour le compteur
+            document.querySelector('.newsletter small').innerHTML = `📊 Déjà ${subscribers.toLocaleString()} abonnés`;
+            
+            console.log(`📧 Nouvel abonné: ${email}`);
+        }
+        
+        // Articles tendance
+        function showTrendingArticle(id) {
+            const articles = {
+                1: "Comparaison détaillée entre ChatGPT-5 et Gemini Ultra...",
+                2: "Les voitures volantes arrivent en 2025 avec Uber Air...",
+                3: "IBM lance le premier ordinateur quantique commercial..."
+            };
+            
+            alert(`📰 Article Tendance:\n\n${articles[id]}\n\n(Fonctionnalité complète à développer)`);
+        }
+        
+        // Mise à jour automatique (simulation)
+        function updateContent() {
+            const updateTime = new Date();
+            document.getElementById('lastUpdate').textContent = updateTime.toLocaleString();
+            
+            // Calculer prochaine mise à jour (toutes les 6h)
+            const nextUpdate = new Date(updateTime.getTime() + 6 * 60 * 60 * 1000);
+            const timeUntil = Math.ceil((nextUpdate - new Date()) / (1000 * 60 * 60));
+            document.getElementById('nextUpdate').textContent = `Dans ${timeUntil}h`;
+            
+            console.log('🔄 Contenu mis à jour automatiquement');
+        }
+        
+        // Simulation revenus publicitaires
+        function calculateRevenue() {
+            const pageViews = Math.floor(Math.random() * 1000) + 500;
+            const cpm = 2.5; // €2.50 pour 1000 vues
+            const dailyRevenue = (pageViews * cpm / 1000).toFixed(2);
+            
+            console.log(`💰 Revenus estimés aujourd'hui: ${dailyRevenue}€ (${pageViews} vues)`);
+        }
+        
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('📰 A SAVOIR - Magazine Gratuit chargé !');
+            console.log('💰 Modèle économique: Publicité non-intrusive');
+            console.log('🆓 Service 100% gratuit pour les lecteurs');
+            
+            // Mise à jour initiale
+            updateContent();
+            calculateRevenue();
+            
+            // Mise à jour automatique toutes les 6h (simulation)
+            setInterval(updateContent, 6 * 60 * 60 * 1000);
+            
+            // Calcul revenus quotidien
+            setInterval(calculateRevenue, 24 * 60 * 60 * 1000);
+            
+            // Animation d'entrée
+            document.querySelector('.container').style.opacity = '0';
+            setTimeout(() => {
+                document.querySelector('.container').style.transition = 'opacity 0.8s ease';
+                document.querySelector('.container').style.opacity = '1';
+            }, 200);
+        });
+        
+        // Gestion clavier pour accessibilité
+        document.addEventListener('keydown', function(e) {
+            if (e.key >= '1' && e.key <= '5') {
+                const sections = ['accueil', 'sante', 'innovation', 'decouvertes', 'femmes-tech'];
+                const index = parseInt(e.key) - 1;
+                if (sections[index]) {
+                    showSection(sections[index]);
+                    document.querySelectorAll('.nav-pill')[index].classList.add('active');
+                }
+            }
+        });
+        
+        // Analytics de performance (sans cookies)
+        window.addEventListener('load', function() {
+            const loadTime = performance.now();
+            console.log(`⚡ Temps de chargement: ${loadTime.toFixed(0)}ms`);
+            
+            if (loadTime < 1000) {
+                console.log('🚀 Performance excellente !');
+            }
+        });
+    </script>
+    
+    <!-- Code Google AdSense (à remplacer par vos vraies pub) -->
+    <script>
+        // Simulation de revenus AdSense
+        function initAds() {
+            console.log('📢 Publicités initialisées');
+            console.log('💰 CPM estimé: €2.50 pour 1000 vues');
+            console.log('📊 Revenus potentiels: €50-200/mois selon trafic');
+        }
+        
+        // Initialiser après chargement
+        setTimeout(initAds, 1000);
+    </script>
+</body>
+</html>

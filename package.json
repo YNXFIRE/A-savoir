@@ -1,0 +1,79 @@
+{
+  \"name\": \"matemacher\",
+  \"version\": \"1.0.0\",
+  \"description\": \"MAteacher - Votre professeur IA révolutionnaire pour tous les niveaux scolaires\",
+  \"main\": \"index.html\",
+  \"scripts\": {
+    \"start\": \"python -m http.server 8000\",
+    \"dev\": \"live-server --port=3000\",
+    \"build\": \"echo 'No build process needed - Static HTML/CSS/JS'\",
+    \"deploy\": \"echo 'Ready for deployment to any web server'\",
+    \"test\": \"echo 'Tests will be added in future iterations'\"
+  },
+  \"keywords\": [
+    \"ai\",
+    \"education\",
+    \"teacher\",
+    \"learning\",
+    \"homework-help\",
+    \"artificial-intelligence\",
+    \"french-education\",
+    \"interactive-learning\"
+  ],
+  \"author\": \"MAteacher Team\",
+  \"license\": \"MIT\",
+  \"repository\": {
+    \"type\": \"git\",
+    \"url\": \"https://github.com/matemacher/matemacher-web\"
+  },
+  \"bugs\": {
+    \"url\": \"https://github.com/matemacher/matemacher-web/issues\"
+  },
+  \"homepage\": \"https://matemacher.com\",
+  \"engines\": {
+    \"node\": \">=14.0.0\"
+  },
+  \"devDependencies\": {
+    \"live-server\": \"^1.2.2\"
+  },
+  \"browserslist\": [
+    \"last 2 Chrome versions\",
+    \"last 2 Firefox versions\",
+    \"last 2 Safari versions\",
+    \"last 2 Edge versions\"
+  ],
+  \"dependencies\": {
+    \"tailwindcss\": \"^3.3.0\",
+    \"@fortawesome/fontawesome-free\": \"^6.4.0\"
+  },
+  \"features\": {
+    \"chat-ai\": \"Interactive AI chat with contextual responses\",
+    \"digital-blackboard\": \"Interactive drawing canvas with math symbols\",
+    \"voice-recognition\": \"Speech-to-text and text-to-speech capabilities\",
+    \"camera-integration\": \"Photo capture and AI analysis of exercises\",
+    \"gamification\": \"Points, levels, badges and achievement system\",
+    \"authentication\": \"User accounts with guest and premium modes\",
+    \"payment-system\": \"Subscription management with multiple tiers\",
+    \"responsive-design\": \"Mobile-first design with full accessibility\",
+    \"file-upload\": \"Support for PDF, images and document analysis\"
+  },
+  \"technology-stack\": {
+    \"frontend\": \"HTML5, CSS3, JavaScript ES6+\",
+    \"styling\": \"Tailwind CSS, Custom CSS animations\",
+    \"icons\": \"Font Awesome 6\",
+    \"fonts\": \"Google Fonts (Inter)\",
+    \"apis\": \"Web Speech API, Camera API, File API\",
+    \"storage\": \"LocalStorage, SessionStorage\",
+    \"architecture\": \"Modular JavaScript classes\"
+  },
+  \"deployment\": {
+    \"ready-for\": [
+      \"GitHub Pages\",
+      \"Netlify\",
+      \"Vercel\",
+      \"Any web server (Apache/Nginx)\",
+      \"CDN deployment\"
+    ],
+    \"requirements\": \"Static file hosting only - No backend required\"
+  }
+}"

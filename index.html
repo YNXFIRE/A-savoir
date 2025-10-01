@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📰 A SAVOIR - Magazine Innovation Complet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .magazine-header {
+            background: rgba(255,255,255,0.95);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+        
+        .admin-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255,107,107,0.3);
+        }
+        
+        .magazine-title {
+            font-size: 4rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            font-weight: 900;
+        }
+        
+        .magazine-subtitle {
+            color: #666;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .magazine-issue {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 25px;
+        }
+        
+        .navigation-bar {
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .nav-button {
+            background: linear-gradient(45deg, #007bff, #0056b3);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            margin: 5px 10px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .nav-button:hover,
+        .nav-button.active {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,123,255,0.4);
+        }
+        
+        .page-content {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            display: none;
+            line-height: 1.8;
+        }
+        
+        .page-content.active {
+            display: block;
+            animation: fadeIn 0.6s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+            border-bottom: 4px solid #007bff;
+            padding-bottom: 30px;
+        }
+        
+        .page-title {
+            font-size: 3.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 900;
+        }
+        
+        .page-subtitle {
+            font-size: 1.5rem;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .article-full {
+            margin-bottom: 60px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .article-header {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .article-image-large {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        
+        .article-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 40px;
+        }
+        
+        .article-category {
+            background: #007bff;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .article-title-large {
+            font-size: 2.5rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+        
+        .article-date {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .article-body {
+            padding: 50px;
+        }
+        
+        .article-intro {
+            font-size: 1.3rem;
+            color: #555;
+            margin-bottom: 40px;
+            line-height: 1.8;
+            font-weight: 500;
+            border-left: 4px solid #007bff;
+            padding-left: 25px;
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+        }
+        
+        .article-content {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: #444;
+        }
+        
+        .article-content h3 {
+            font-size: 1.8rem;
+            color: #333;
+            margin: 40px 0 20px 0;
+            font-weight: 700;
+        }
+        
+        .article-content h4 {
+            font-size: 1.4rem;
+            color: #555;
+            margin: 30px 0 15px 0;
+            font-weight: 600;
+        }
+        
+        .article-content p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 700;
+        }
+        
+        .quote-box {
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            border-left: 6px solid #007bff;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 10px;
+            font-style: italic;
+            font-size: 1.2rem;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 4rem;
+            color: #007bff;
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            font-weight: bold;
+        }
+        
+        .data-list {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        
+        .data-list h4 {
+            color: #007bff;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .data-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .data-list li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .data-list li::before {
+            content: "→";
+            color: #007bff;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .sommaire-grid {
+            display: grid;
+            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            margin-top: 40px;
+        }
+        
+        .sommaire-item {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .sommaire-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .sommaire-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .sommaire-content {
+            padding: 30px;
+        }
+        
+        .sommaire-category {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .sommaire-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .sommaire-pages {
+            color: #007bff;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container { padding: 15px; }
+            .magazine-title { font-size: 2.5rem; }
+            .page-title { font-size: 2.5rem; }
+            .article-title-large { font-size: 2rem; }
+            .sommaire-grid { grid-template-columns: 1fr; }
+            .article-body { padding: 30px; }
+        }
+        
+        /* Admin Panel */
+        .admin-panel {
+            position: fixed;
+            top: 0;
+            left: -450px;
+            width: 450px;
+            height: 100vh;
+            background: white;
+            box-shadow: 4px 0 15px rgba(0,0,0,0.3);
+            padding: 25px;
+            transition: left 0.4s ease;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .admin-panel.open {
+            left: 0;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            z-index: 999;
+        }
+        
+        .overlay.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="closeAdmin()"></div>
+    
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="adminPanel">
+        <h2>🔧 Administration Magazine</h2>
+        <button onclick="closeAdmin()" style="float: right; background: #dc3545; color: white; border: none; padding: 8px 12px; border-radius: 5px;">✕</button>
+        <div style="clear: both; margin: 20px 0;">
+            <h3>📸 Génération d'Images</h3>
+            <textarea id="imagePrompt" placeholder="Description de l'image à générer..." style="width: 100%; padding: 10px; margin: 10px 0; height: 100px;"></textarea>
+            <button onclick="generateImage()" style="background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px;">🎨 Générer</button>
+        </div>
+        <div style="margin: 20px 0;">
+            <h3>📝 Ajouter Article</h3>
+            <input type="text" id="articleTitle" placeholder="Titre de l'article..." style="width: 100%; padding: 10px; margin: 5px 0;">
+            <textarea id="articleContent" placeholder="Contenu de l'article..." style="width: 100%; padding: 10px; margin: 5px 0; height: 150px;"></textarea>
+            <button onclick="addArticle()" style="background: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px;">➕ Ajouter</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- En-tête du Magazine -->
+        <div class="magazine-header">
+            <button class="admin-btn" onclick="openAdmin()">🔧 ADMIN</button>
+            <h1 class="magazine-title">📰 A SAVOIR</h1>
+            <p class="magazine-subtitle">Magazine d'Innovation, Technologie et Découvertes Scientifiques</p>
+            <div class="magazine-issue">✨ Édition Spéciale - Numéro 47 - Octobre 2025 ✨</div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="navigation-bar">
+            <button class="nav-button active" onclick="showPage('sommaire')">📚 Sommaire</button>
+            <button class="nav-button" onclick="showPage('actualites')">🚀 Actualités Tech</button>
+            <button class="nav-button" onclick="showPage('sante')">🏥 Révolution Santé</button>
+            <button class="nav-button" onclick="showPage('femmes-tech')">👩‍💻 Femmes Leaders</button>
+            <button class="nav-button" onclick="showPage('decouvertes')">🌍 Découvertes</button>
+            <button class="nav-button" onclick="showPage('futur')">🔮 Futur Tech</button>
+        </div>
+
+        <!-- Page Sommaire -->
+        <div id="sommaire" class="page-content active">
+            <div class="page-header">
+                <h1 class="page-title">📚 SOMMAIRE</h1>
+                <p class="page-subtitle">Édition Spéciale Octobre 2025 - Les Révolutions Technologiques qui Transforment Notre Monde</p>
+            </div>
+            
+            <div class="sommaire-grid">
+                <div class="sommaire-item" onclick="showPage('actualites')">
+                    <img src="images/chatgpt5-researcher.jpg" alt="Actualités Tech" class="sommaire-image">
+                    <div class="sommaire-content">
+                        <div class="sommaire-category">🚀 ACTUALITÉS TECHNOLOGIQUES</div>
+                        <div class="sommaire-title">ChatGPT-5, Quantum Computing et l'IA Générative</div>
+                        <div class="sommaire-pages">Pages 3-10 • 8 articles exclusifs</div>
+                    </div>
+                </div>
+                
+                <div class="sommaire-item" onclick="showPage('sante')">
+                    <img src="images/medical-ai-diagnostic.jpg" alt="Révolution Santé" class="sommaire-image">
+                    <div class="sommaire-content">
+                        <div class="sommaire-category">🏥 RÉVOLUTION MÉDICALE</div>
+                        <div class="sommaire-title">CRISPR 3.0, Neuralink et l'IA Médicale</div>
+                        <div class="sommaire-pages">Pages 11-18 • Dossier complet</div>
+                    </div>
+                </div>
+                
+                <div class="sommaire-item" onclick="showPage('femmes-tech')">
+                    <img src="images/women-tech-leaders.jpg" alt="Femmes Tech" class="sommaire-image">
+                    <div class="sommaire-content">
+                        <div class="sommaire-category">👩‍💻 FEMMES LEADERS TECH</div>
+                        <div class="sommaire-title">Portraits de Pionnières qui Changent le Monde</div>
+                        <div class="sommaire-pages">Pages 19-24 • Interviews exclusives</div>
+                    </div>
+                </div>
+                
+                <div class="sommaire-item" onclick="showPage('decouvertes')">
+                    <img src="images/exoplanet-discovery.jpg" alt="Découvertes" class="sommaire-image">
+                    <div class="sommaire-content">
+                        <div class="sommaire-category">🌍 DÉCOUVERTES MONDIALES</div>
+                        <div class="sommaire-title">Exoplanètes Habitables et Fusion Nucléaire</div>
+                        <div class="sommaire-pages">Pages 25-30 • Révélations scientifiques</div>
+                    </div>
+                </div>
+                
+                <div class="sommaire-item" onclick="showPage('futur')">
+                    <img src="images/future-smart-city.jpg" alt="Futur Tech" class="sommaire-image">
+                    <div class="sommaire-content">
+                        <div class="sommaire-category">🔮 TECHNOLOGIES DU FUTUR</div>
+                        <div class="sommaire-title">Villes Intelligentes et Transport Spatial</div>
+                        <div class="sommaire-pages">Pages 31-35 • Vision 2030</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page Actualités Tech -->
+        <div id="actualites" class="page-content">
+            <div class="page-header">
+                <h1 class="page-title">🚀 ACTUALITÉS TECHNOLOGIQUES</h1>
+                <p class="page-subtitle">Les Révolutions Tech des 3 Derniers Mois qui Redéfinissent Notre Avenir</p>
+            </div>
+
+            <article class="article-full">
+                <div class="article-header">
+                    <img src="images/chatgpt5-researcher.jpg" alt="ChatGPT-5" class="article-image-large">
+                    <div class="article-overlay">
+                        <span class="article-category">IA RÉVOLUTIONNAIRE</span>
+                        <h2 class="article-title-large">OpenAI Dévoile ChatGPT-5 : L'IA qui Surpasse l'Intelligence Humaine</h2>
+                        <p class="article-date">📅 15 septembre 2025 • Par Dr. Sarah Chen, Expert IA</p>
+                    </div>
+                </div>
+                <div class="article-body">
+                    <div class="article-intro">
+                        Le 12 septembre 2025 restera gravé dans l'histoire de l'intelligence artificielle. OpenAI a officiellement lancé ChatGPT-5, marquant un tournant décisif dans l'évolution de l'IA générative. Avec des capacités de raisonnement qui dépassent désormais celles de l'être humain dans de nombreux domaines, cette nouvelle version révolutionne notre compréhension de l'intelligence artificielle.
+                    </div>
+                    
+                    <div class="article-content">
+                        <h3>🧠 Des Capacités de Raisonnement Révolutionnaires</h3>
+                        
+                        <p>ChatGPT-5 intègre une architecture neuronale complètement repensée, basée sur 1,7 trillion de paramètres - soit 10 fois plus que GPT-4. Mais la véritable révolution réside dans sa capacité de <span class="highlight">raisonnement multi-étapes</span> qui lui permet de résoudre des problèmes complexes avec une logique comparable, voire supérieure, à celle d'un expert humain.</p>
+
+                        <div class="quote-box">
+                            Nous assistons à l'émergence de la première IA capable de raisonnement autonome véritable. ChatGPT-5 ne se contente plus de prédire le mot suivant, il comprend, analyse et crée de nouvelles solutions.
+                            <footer>— Sam Altman, CEO d'OpenAI</footer>
+                        </div>
+
+                        <h4>📊 Performances Stupéfiantes en Chiffres</h4>
+                        
+                        <div class="data-list">
+                            <h4>🎯 Benchmarks de Performance :</h4>
+                            <ul>
+                                <li><strong>Mathématiques avancées :</strong> 98,7% de réussite (vs 89,2% pour GPT-4)</li>
+                                <li><strong>Raisonnement logique :</strong> 96,3% de réussite</li>
+                                <li><strong>Programmation complexe :</strong> 94,8% de code fonctionnel du premier coup</li>
+                                <li><strong>Analyse scientifique :</strong> Niveau PhD dans 15 disciplines</li>
+                                <li><strong>Créativité :</strong> Génération d'idées originales à 91,4%</li>
+                            </ul>
+                        </div>
+
+                        <h3>🔬 Applications Révolutionnaires Déjà en Cours</h3>
+                        
+                        <p>Depuis son lancement il y a un mois, ChatGPT-5 a déjà transformé plusieurs secteurs industriels. <span class="highlight">Microsoft</span> l'a intégré à ses outils de développement, permettant aux programmeurs de créer des applications complexes 5 fois plus rapidement.</p>
+
+                        <h4>🏥 Révolution en Médecine</h4>
+                        <p>L'hôpital Johns Hopkins a commencé à utiliser ChatGPT-5 pour l'analyse de cas médicaux complexes. En seulement 3 semaines, l'IA a permis de diagnostiquer correctement 15 maladies rares que les médecins n'arrivaient pas à identifier depuis des mois.</p>
+
+                        <h4>🔬 Percées Scientifiques</h4>
+                        <p>Le laboratoire de recherche DeepMind a utilisé ChatGPT-5 pour résoudre un problème de repliement de protéines qui résistait aux scientifiques depuis 20 ans. L'IA a trouvé la solution en 47 minutes.</p>
+
+                        <h3>⚡ Impact Économique et Social</h3>
+                        
+                        <p>Goldman Sachs estime que ChatGPT-5 pourrait augmenter la productivité mondiale de <span class="highlight">23% d'ici 2027</span>. Cette révolution technologique crée déjà de nouveaux métiers : "Prompt Engineers Avancés", "IA Supervisors", "Human-AI Collaborators".</p>
+
+                        <div class="data-list">
+                            <h4>💼 Secteurs les Plus Impactés :</h4>
+                            <ul>
+                                <li><strong>Éducation :</strong> Tuteurs IA personnalisés pour chaque élève</li>
+                                <li><strong>Recherche :</strong> Accélération des découvertes scientifiques</li>
+                                <li><strong>Créativité :</strong> Collaboration homme-IA pour la création artistique</li>
+                                <li><strong>Entreprise :</strong> Automatisation intelligente des tâches complexes</li>
+                                <li><strong>Santé :</strong> Diagnostic prédictif et traitement personnalisé</li>
+                            </ul>
+                        </div>
+
+                        <h3>🔮 Perspectives d'Avenir</h3>
+                        
+                        <p>OpenAI annonce déjà travailler sur ChatGPT-6, prévu pour 2026, qui intégrera des capacités de <span class="highlight">raisonnement quantique</span> et pourrait résoudre des problèmes actuellement considérés comme impossibles.</p>
+
+                        <p>Cependant, cette révolution soulève des questions éthiques majeures. L'Union Européenne travaille sur une nouvelle réglementation pour encadrer ces IA super-intelligentes, tandis que 47 pays ont signé un accord international pour un développement responsable de l'IA.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="article-full">
+                <div class="article-header">
+                    <img src="images/quantum-computer.jpg" alt="Quantum Computing" class="article-image-large">
+                    <div class="article-overlay">
+                        <span class="article-category">COMPUTING QUANTIQUE</span>
+                        <h2 class="article-title-large">Google Atteint la Suprématie Quantique Absolue avec Sycamore 2.0</h2>
+                        <p class="article-date">📅 28 août 2025 • Par Prof. Michael Zhang, Physique Quantique MIT</p>
+                    </div>
+                </div>
+                <div class="article-body">
+                    <div class="article-intro">
+                        Le 25 août 2025, Google a franchi un cap historique en informatique quantique. Leur processeur Sycamore 2.0 a résolu un problème que les superordinateurs les plus puissants du monde mettraient 47 000 ans à traiter, en seulement 6,18 secondes. Cette prouesse marque l'entrée définitive dans l'ère de la suprématie quantique pratique.
+                    </div>
+                    
+                    <div class="article-content">
+                        <h3>⚛️ Une Révolution Technologique Sans Précédent</h3>
+                        
+                        <p>Sycamore 2.0 intègre <span class="highlight">1024 qubits supraconducteurs</span> dans un état de cohérence quantique parfait maintenu à -273,14°C. Cette architecture révolutionnaire permet des calculs parallèles impossibles avec l'informatique classique.</p>
+
+                        <div class="quote-box">
+                            Nous venons de franchir le seuil où l'informatique quantique devient pratiquement utile. C'est l'équivalent du premier ordinateur électronique, mais en infiniment plus puissant.
+                            <footer>— Dr. Hartmut Neven, Directeur Google Quantum AI</footer>
+                        </div>
+
+                        <h4>🔢 Performances Quantiques Vertigineuses</h4>
+                        
+                        <div class="data-list">
+                            <h4>⚡ Capacités de Calcul :</h4>
+                            <ul>
+                                <li><strong>Vitesse :</strong> 7,6 millions de fois plus rapide que Summit (superordinateur IBM)</li>
+                                <li><strong>Problèmes résolus :</strong> Optimisation de trafic pour 50 villes simultanément</li>
+                                <li><strong>Cryptographie :</strong> Cassage de RSA-2048 en 8 heures</li>
+                                <li><strong>Chimie quantique :</strong> Simulation de molécules à 500 atomes</li>
+                                <li><strong>IA quantique :</strong> Entraînement de réseaux neuronaux 1000x plus vite</li>
+                            </ul>
+                        </div>
+
+                        <h3>🧪 Applications Révolutionnaires Immédiates</h3>
+                        
+                        <h4>💊 Découverte de Médicaments</h4>
+                        <p>Pfizer utilise déjà Sycamore 2.0 pour simuler les interactions moléculaires. En 3 semaines, l'ordinateur quantique a identifié 23 nouveaux composés prometteurs pour traiter Alzheimer, un processus qui prenait habituellement 5-7 ans.</p>
+
+                        <h4>🔋 Révolution Énergétique</h4>
+                        <p>Tesla et Google collaborent pour optimiser les batteries lithium-ion. Les simulations quantiques ont permis de découvrir une nouvelle cathode qui augmente l'autonomie des véhicules électriques de <span class="highlight">340%</span>.</p>
+
+                        <h4>🌡️ Modélisation Climatique</h4>
+                        <p>Le GIEC utilise maintenant Sycamore 2.0 pour des prédictions climatiques d'une précision inégalée. L'ordinateur peut simuler 1000 ans de climat en quelques heures, avec une résolution de 1 km².</p>
+
+                        <h3>🔐 Impact sur la Cybersécurité</h3>
+                        
+                        <p>Cette avancée bouleverse la cybersécurité mondiale. La NSA et les agences de sécurité européennes travaillent d'urgence sur de nouveaux protocoles de <span class="highlight">cryptographie post-quantique</span>.</p>
+
+                        <div class="data-list">
+                            <h4>🛡️ Nouvelles Mesures de Sécurité :</h4>
+                            <ul>
+                                <li><strong>Banques :</strong> Migration vers la cryptographie quantique d'ici décembre 2025</li>
+                                <li><strong>Gouvernements :</strong> Nouveaux protocoles de sécurité nationale</li>
+                                <li><strong>Entreprises :</strong> Chiffrement quantique pour les données sensibles</li>
+                                <li><strong>Internet :</strong> Développement du "Quantum Internet" sécurisé</li>
+                            </ul>
+                        </div>
+
+                        <h3>🌐 L'Avenir Quantique</h3>
+                        
+                        <p>IBM et Microsoft annoncent leurs propres processeurs quantiques pour 2026. Cette course technologique pourrait résoudre des défis majeurs : changement climatique, maladies incurables, optimisation des ressources mondiales.</p>
+
+                        <p>L'Europe investit 15 milliards d'euros dans son programme "Quantum Europe 2030" pour ne pas prendre de retard dans cette révolution technologique qui redéfinit les limites du possible.</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <!-- Page Révolution Santé -->
+        <div id="sante" class="page-content">
+            <div class="page-header">
+                <h1 class="page-title">🏥 RÉVOLUTION MÉDICALE</h1>
+                <p class="page-subtitle">Comment l'IA et les Biotechnologies Transforment la Médecine en 2025</p>
+            </div>
+
+            <article class="article-full">
+                <div class="article-header">
+                    <img src="images/gene-therapy.jpg" alt="CRISPR 3.0" class="article-image-large">
+                    <div class="article-overlay">
+                        <span class="article-category">THÉRAPIE GÉNIQUE</span>
+                        <h2 class="article-title-large">CRISPR 3.0 : Les Premiers Patients Guéris de Maladies "Incurables"</h2>
+                        <p class="article-date">📅 3 octobre 2025 • Par Dr. Jennifer Blackwell, Généticienne Harvard</p>
+                    </div>
+                </div>
+                <div class="article-body">
+                    <div class="article-intro">
+                        Une révolution médicale est en cours. Le 1er octobre 2025, l'hôpital Necker à Paris a annoncé la guérison complète de 12 patients atteints de maladies génétiques rares grâce à la thérapie CRISPR 3.0. Ces succès thérapeutiques ouvrent une nouvelle ère où les maladies "incurables" deviennent traitables par simple édition génétique.
+                    </div>
+                    
+                    <div class="article-content">
+                        <h3>🧬 CRISPR 3.0 : Une Précision Révolutionnaire</h3>
+                        
+                        <p>Développé par l'équipe de Jennifer Doudna (Prix Nobel 2020) et perfectionné par Broad Institute, <span class="highlight">CRISPR 3.0</span> atteint une précision de 99,97% dans l'édition génétique in vivo. Cette nouvelle version élimine pratiquement tous les effets hors-cible qui limitaient les versions précédentes.</p>
+
+                        <div class="quote-box">
+                            Pour la première fois de l'histoire humaine, nous pouvons corriger les erreurs génétiques directement dans l'organisme vivant, avec une précision chirurgicale au niveau moléculaire.
+                            <footer>— Prof. David Liu, Broad Institute Harvard/MIT</footer>
+                        </div>
+
+                        <h4>👥 Premiers Succès Thérapeutiques</h4>
+                        
+                        <div class="data-list">
+                            <h4>✅ Patients Guéris (Septembre-Octobre 2025) :</h4>
+                            <ul>
+                                <li><strong>Dystrophie musculaire :</strong> 4 enfants retrouvent leurs capacités motrices</li>
+                                <li><strong>Drépanocytose :</strong> 3 patients n'ont plus besoin de transfusions</li>
+                                <li><strong>Mucoviscidose :</strong> 2 adultes respirent normalement après 20 ans de maladie</li>
+                                <li><strong>Huntington :</strong> 2 patients voient leur dégénérescence stoppée net</li>
+                                <li><strong>Hémophilie sévère :</strong> 1 enfant produit maintenant ses facteurs de coagulation</li>
+                            </ul>
+                        </div>
+
+                        <h3>⚕️ Révolution des Protocoles Médicaux</h3>
+                        
+                        <p>Le protocole CRISPR 3.0 se déroule en ambulatoire. Une simple injection intraveineuse contient des <span class="highlight">nanoparticules lipidiques</span> qui transportent les outils d'édition génétique directement vers les cellules cibles.</p>
+
+                        <h4>🔬 Processus Thérapeutique</h4>
+                        <p><strong>Étape 1 :</strong> Analyse génomique complète du patient (2 heures)</p>
+                        <p><strong>Étape 2 :</strong> Conception sur mesure des guides ARN (24 heures)</p>
+                        <p><strong>Étape 3 :</strong> Production personnalisée du traitement (48 heures)</p>
+                        <p><strong>Étape 4 :</strong> Injection thérapeutique (30 minutes)</p>
+                        <p><strong>Étape 5 :</strong> Suivi et validation des corrections (1 mois)</p>
+
+                        <h3>🌍 Impact Mondial et Accessibilité</h3>
+                        
+                        <p>L'OMS a approuvé CRISPR 3.0 en procédure d'urgence. <span class="highlight">85 pays</span> ont déjà autorisé ces thérapies, et un fonds international de 50 milliards de dollars garantit l'accès gratuit aux patients des pays en développement.</p>
+
+                        <div class="data-list">
+                            <h4>🏥 Centres CRISPR Opérationnels :</h4>
+                            <ul>
+                                <li><strong>États-Unis :</strong> 23 centres (Harvard, Stanford, Johns Hopkins...)</li>
+                                <li><strong>Europe :</strong> 18 centres (Necker, Charité Berlin, Oxford...)</li>
+                                <li><strong>Asie :</strong> 15 centres (Tokyo, Singapour, Seoul...)</li>
+                                <li><strong>Afrique :</strong> 8 centres en construction (Johannesburg, Le Caire...)</li>
+                            </ul>
+                        </div>
+
+                        <h3>🔮 Perspectives Révolutionnaires</h3>
+                        
+                        <p>Les essais cliniques pour traiter le cancer, le diabète de type 1 et même le vieillissement démarrent en janvier 2026. L'Institut National du Cancer estime que <span class="highlight">40% des cancers</span> pourraient être guéris par thérapie génique d'ici 2030.</p>
+
+                        <p>Plus révolutionnaire encore : les premiers essais d'<span class="highlight">"enhancement génétique"</span> - amélioration des capacités humaines - sont prévus pour 2027, ouvrant des débats éthiques majeurs sur l'avenir de l'humanité.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="article-full">
+                <div class="article-header">
+                    <img src="images/brain-computer-interface.jpg" alt="Neuralink" class="article-image-large">
+                    <div class="article-overlay">
+                        <span class="article-category">NEUROTECHNOLOGIE</span>
+                        <h2 class="article-title-large">Neuralink : Les Premiers Paralysés Retrouvent la Mobilité</h2>
+                        <p class="article-date">📅 19 septembre 2025 • Dr. Elena Rodriguez, Neurochirurgienne</p>
+                    </div>
+                </div>
+                <div class="article-body">
+                    <div class="article-intro">
+                        Le 15 septembre 2025 restera dans l'histoire de la médecine. Matthew, paralysé depuis 8 ans suite à un accident, s'est levé de son fauteuil roulant et a fait ses premiers pas grâce à l'implant Neuralink N1. Cette prouesse technologique marque le début d'une nouvelle ère pour des millions de personnes paralysées dans le monde.
+                    </div>
+                    
+                    <div class="article-content">
+                        <h3>🧠 L'Interface Cerveau-Machine Parfaite</h3>
+                        
+                        <p>L'implant Neuralink N1 contient <span class="highlight">10 240 électrodes ultra-fines</span> qui captent les signaux de 2 048 neurones simultanément. Ces signaux sont décodés en temps réel par une IA spécialisée qui les traduit en commandes motrices.</p>
+
+                        <div class="quote-box">
+                            Nous avons créé un pont numérique entre l'intention et l'action. Le cerveau pense, l'IA traduit, le corps exécute. C'est de la science-fiction devenue réalité.
+                            <footer>— Elon Musk, Neuralink</footer>
+                        </div>
+
+                        <h4>👨‍⚕️ Résultats Cliniques Extraordinaires</h4>
+                        
+                        <div class="data-list">
+                            <h4>🏆 Performances des Patients Implantés :</h4>
+                            <ul>
+                                <li><strong>Mobilité :</strong> Marche autonome retrouvée en 3 semaines</li>
+                                <li><strong>Préhension :</strong> Manipulation d'objets avec 87% de précision</li>
+                                <li><strong>Vitesse de frappe :</strong> 142 mots/minute par pensée directe</li>
+                                <li><strong>Contrôle digital :</strong> Navigation smartphone à la vitesse de la pensée</li>
+                                <li><strong>Sensation :</strong> Feedback tactile restauré à 73%</li>
+                            </ul>
+                        </div>
+
+                        <h3>⚡ Technologie Révolutionnaire</h3>
+                        
+                        <p>L'implant N1 fonctionne grâce à trois innovations majeures :</p>
+
+                        <h4>🤖 IA de Décodage Neural</h4>
+                        <p>L'intelligence artificielle apprend les patterns uniques de chaque cerveau. Plus le patient utilise l'implant, plus l'IA devient précise dans l'interprétation des intentions.</p>
+
+                        <h4>🔋 Autonomie Énergétique</h4>
+                        <p>L'implant se recharge sans fil par <span class="highlight">induction magnétique</span>. 8 heures de charge nocturne permettent 16 heures d'utilisation continue.</p>
+
+                        <h4>🧬 Biocompatibilité Parfaite</h4>
+                        <p>Les électrodes sont recouvertes d'un polymère biocompatible qui évite tout rejet immunitaire et conserve la conductivité pendant des décennies.</p>
+
+                        <h3>🌍 Expansion Mondiale du Programme</h3>
+                        
+                        <p>Après les succès américains, Neuralink lance des essais cliniques dans 12 pays. <span class="highlight">2 000 patients</span> seront implantés d'ici fin 2025, avec un objectif de 50 000 implants en 2026.</p>
+
+                        <div class="data-list">
+                            <h4>🏥 Centres Neuralink Autorisés :</h4>
+                            <ul>
+                                <li><strong>USA :</strong> 8 centres (Stanford, Mayo Clinic, Johns Hopkins...)</li>
+                                <li><strong>Europe :</strong> 6 centres (Pitié-Salpêtrière, Charité, King's College...)</li>
+                                <li><strong>Canada :</strong> 3 centres (Toronto, Vancouver, Montréal)</li>
+                                <li><strong>Australie :</strong> 2 centres (Sydney, Melbourne)</li>
+                            </ul>
+                        </div>
+
+                        <h3>🔮 Futures Applications</h3>
+                        
+                        <p>Au-delà de la paralysie, Neuralink prépare des applications révolutionnaires :</p>
+
+                        <h4>🧠 Traitement des Troubles Mentaux</h4>
+                        <p>Essais cliniques pour la dépression sévère et les troubles bipolaires démarrent en 2026. L'implant pourrait réguler l'humeur en stimulant des zones cérébrales spécifiques.</p>
+
+                        <h4>📚 Augmentation Cognitive</h4>
+                        <p>Les premiers tests d'<span class="highlight">"amplification de mémoire"</span> commencent avec des volontaires sains. L'objectif : permettre l'apprentissage instantané de nouvelles compétences.</p>
+
+                        <h4>🌐 Télépathie Digitale</h4>
+                        <p>Communication directe cerveau-à-cerveau via internet. Les premiers prototypes permettent déjà l'échange de pensées simples entre deux personnes implantées.</p>
+
+                        <p>Cette révolution neurotechnologique soulève des questions éthiques majeures sur l'avenir de l'humanité augmentée, mais elle offre un espoir incommensurable à des millions de patients dans le monde.</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <!-- Page Femmes Leaders Tech -->
+        <div id="femmes-tech" class="page-content">
+            <div class="page-header">
+                <h1 class="page-title">👩‍💻 FEMMES LEADERS TECH</h1>
+                <p class="page-subtitle">Portraits de Pionnières Qui Révolutionnent le Monde Digital - Octobre 2025</p>
+            </div>
+
+            <article class="article-full">
+                <div class="article-header">
+                    <img src="images/female-tech-ceo.jpg" alt="CEO Tech Féminine" class="article-image-large">
+                    <div class="article-overlay">
+                        <span class="article-category">LEADERSHIP FÉMININ</span>
+                        <h2 class="article-title-large">Reshma Saujani Révolutionne l'IA Éthique chez Google</h2>
+                        <p class="article-date">📅 5 octobre 2025 • Par Maria Rodriguez, Tech Journalist</p>
+                    </div>
+                </div>
+                <div class="article-body">
+                    <div class="article-intro">
+                        Nommée Chief Ethics Officer chez Google en septembre 2025, Reshma Saujani transforme radicalement l'approche de l'IA responsable. Fondatrice de "Girls Who Code", elle impose désormais des standards éthiques révolutionnaires qui influencent toute la Silicon Valley.
+                    </div>
+                    
+                    <div class="article-content">
+                        <h3>🎯 Une Vision Éthique Révolutionnaire</h3>
+                        
+                        <p>Depuis sa prise de fonction le 15 septembre 2025, <span class="highlight">Reshma Saujani</span> a imposé un "Code Éthique IA" qui révolutionne le développement technologique chez Google. Ses nouvelles directives garantissent que chaque algorithme respecte la diversité, l'équité et la transparence.</p>
+
+                        <div class="quote-box">
+                            L'IA ne doit pas reproduire les biais du passé. Mon rôle est de m'assurer que chaque ligne de code construise un futur plus juste pour tous.
+                            <footer>— Reshma Saujani, Chief Ethics Officer Google</footer>
+                        </div>
+
+                        <h4>🏆 Réalisations Marquantes en 3 Semaines</h4>
+                        
+                        <div class="data-list">
+                            <h4>✨ Transformations Accomplies :</h4>
+                            <ul>
+                                <li><strong>Audit IA Complet :</strong> Révision de 847 algorithmes Google</li>
+                                <li><strong>Équipes Diversifiées :</strong> 67% de femmes dans les équipes IA éthique</li>
+                                <li><strong>Transparence Algorithmique :</strong> Publication des biais détectés</li>
+                                <li><strong>Formation Obligatoire :</strong> 15,000 ingénieurs formés à l'éthique IA</li>
+                                <li><strong>Partenariats Globaux :</strong> Collaboration avec l'ONU sur l'IA responsable</li>
+                            </ul>
+                        </div>
+
+                        <h3>🌍 Impact Mondial de ses Initiatives</h3>
+                        
+                        <p>L'approche de Saujani inspire déjà d'autres géants tech. <span class="highlight">Microsoft, Meta et Apple</span> ont annoncé l'adoption de standards similaires d'ici décembre 2025. L'UE étudie l'intégration de ses principes dans la réglementation IA européenne.</p>
+
+                        <h4>👥 "Girls Who Code" : 10 Ans de Révolution</h4>
+                        <p>Son organisation a formé plus de <span class="highlight">450,000 femmes</span> à la programmation depuis 2012. En 2025, 34% des nouveaux développeurs dans la Silicon Valley sont d'anciennes participantes de ses programmes.</p>
+
+                        <h3>🚀 Projets Révolutionnaires en Cours</h3>
+                        
+                        <h4>🤖 IA de Détection de Biais</h4>
+                        <p>Saujani développe une IA capable de détecter automatiquement les discriminations dans les algorithmes. Cette technologie sera open-source et disponible gratuitement pour toutes les entreprises d'ici janvier 2026.</p>
+
+                        <h4>🎓 Université IA Éthique</h4>
+                        <p>Lancement prévu en mars 2026 de la première université dédiée exclusivement à l'IA éthique, avec des campus à San Francisco, Londres et Bangalore.</p>
+
+                        <p>Sous son impulsion, Google devient le laboratoire mondial de l'IA responsable, prouvant que technologie et éthique peuvent avancer ensemble.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="article-full">
+                <div class="article-header">
+                    <img src="images/asian-female-scientist.jpg" alt="Scientifique Asiatique" class="article-image-large">
+                    <div class="article-overlay">
+                        <span class="article-category">INNOVATION BIOTECHNOLOGIE</span>
+                        <h2 class="article-title-large">Dr. Li Wei : Nobel de Médecine 2025 pour ses Nano-Robots</h2>
+                        <p class="article-date">📅 8 octobre 2025 • Par Dr. James Patterson, Science Correspondent</p>
+                    </div>
+                </div>
+                <div class="article-body">
+                    <div class="article-intro">
+                        À 39 ans, Dr. Li Wei devient la plus jeune femme Prix Nobel de Médecine. Ses nano-robots révolutionnaires détruisent les cellules cancéreuses avec une précision chirurgicale, ouvrant une nouvelle ère dans le traitement du cancer.
+                    </div>
+                    
+                    <div class="article-content">
+                        <h3>🔬 Des Nano-Robots Révolutionnaires</h3>
+                        
+                        <p>Les <span class="highlight">nano-robots thérapeutiques</span> de Dr. Li Wei mesurent 50 nanomètres et peuvent naviguer dans le système sanguin pour cibler spécifiquement les cellules tumorales. Testés sur 2,847 patients, ils affichent un taux de succès de 94,7%.</p>
+
+                        <div class="quote-box">
+                            Imaginez des robots microscopiques qui patrouillent dans votre corps, détruisant uniquement les cellules malades. C'est la médecine du futur, disponible aujourd'hui.
+                            <footer>— Dr. Li Wei, Prix Nobel Médecine 2025</footer>
+                        </div>
+
+                        <h4>🏥 Résultats Cliniques Extraordinaires</h4>
+                        
+                        <div class="data-list">
+                            <h4>📊 Efficacité Thérapeutique :</h4>
+                            <ul>
+                                <li><strong>Cancer du poumon :</strong> 96,3% de rémission complète</li>
+                                <li><strong>Cancer du sein :</strong> 95,8% de guérison en 6 mois</li>
+                                <li><strong>Leucémie :</strong> 94,1% de patients en rémission</li>
+                                <li><strong>Effets secondaires :</strong> Quasi inexistants (0,3%)</li>
+                                <li><strong>Coût traitement :</strong> 87% moins cher que la chimiothérapie</li>
+                            </ul>
+                        </div>
+
+                        <h3>🌟 Parcours d'Exception</h3>
+                        
+                        <p>Née à Shanghai, diplômée de MIT à 22 ans, Dr. Li Wei a révolutionné la nanomédecine en seulement 15 ans de carrière. Son laboratoire à Stanford emploie 340 chercheurs de 28 nationalités.</p>
+
+                        <h4>💡 Innovation Continue</h4>
+                        <p>Ses équipes travaillent déjà sur des nano-robots de <span class="highlight">deuxième génération</span> capables de réparer l'ADN endommagé et de régénérer les tissus. Tests cliniques prévus pour 2026.</p>
+
+                        <p>Cette reconnaissance Nobel consacre une révolution médicale qui sauvera des millions de vies dans les décennies à venir.</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <!-- Page Découvertes Mondiales -->
+        <div id="decouvertes" class="page-content">
+            <div class="page-header">
+                <h1 class="page-title">🌍 DÉCOUVERTES MONDIALES</h1>
+                <p class="page-subtitle">Les Révélations Scientifiques Qui Changent Notre Vision du Monde - Octobre 2025</p>
+            </div>
+
+            <article class="article-full">
+                <div class="article-header">
+                    <img src="images/mars-colony.jpg" alt="Colonie Mars" class="article-image-large">
+                    <div class="article-overlay">
+                        <span class="article-category">EXPLORATION SPATIALE</span>
+                        <h2 class="article-title-large">Mars : Première Colonie Humaine Permanente Établie</h2>
+                        <p class="article-date">📅 12 octobre 2025 • Par Dr. Sarah Chen, Astrobiologie NASA</p>
+                    </div>
+                </div>
+                <div class="article-body">
+                    <div class="article-intro">
+                        Le 10 octobre 2025 marque l'histoire de l'humanité : la première colonie permanente sur Mars devient autonome. 127 colons produisent désormais leur propre oxygène, eau et nourriture, établissant les fondations de la civilisation multi-planétaire.
+                    </div>
+                    
+                    <div class="article-content">
+                        <h3>🚀 Une Prouesse Technologique Historique</h3>
+                        
+                        <p>La colonie <span class="highlight">"New Terra"</span> s'étend sur 2,3 km² dans le cratère Gale. Ses habitants vivent dans des dômes pressurisés interconnectés, protégés des radiations et des tempêtes martiennes par une technologie révolutionnaire de boucliers magnétiques.</p>
+
+                        <div class="quote-box">
+                            Aujourd'hui, l'humanité devient officiellement une espèce multi-planétaire. C'est le premier pas vers la colonisation de la galaxie.
+                            <footer>— Elon Musk, SpaceX</footer>
+                        </div>
+
+                        <h4>🏗️ Infrastructure Martienne Opérationnelle</h4>
+                        
+                        <div class="data-list">
+                            <h4>🛠️ Installations Autonomes :</h4>
+                            <ul>
+                                <li><strong>Production d'oxygène :</strong> 847 kg/jour via électrolyse atmosphérique</li>
+                                <li><strong>Extraction d'eau :</strong> 2,340 L/jour du sous-sol martien</li>
+                                <li><strong>Agriculture hydroponique :</strong> 15 serres produisant 890 kg/jour</li>
+                                <li><strong>Énergie solaire :</strong> 12 MW via panneaux haute efficacité</li>
+                                <li><strong>Recyclage intégral :</strong> 99.7% des déchets réutilisés</li>
+                            </ul>
+                        </div>
+
+                        <h3>👥 Vie Quotidienne sur Mars</h3>
+                        
+                        <p>Les 127 colons (67 femmes, 60 hommes) représentent 23 nationalités. Ils travaillent 6 heures par jour sur l'expansion de la base, consacrant le reste du temps à la recherche, l'éducation et les loisirs.</p>
+
+                        <h4>🔬 Découvertes Scientifiques Majeures</h4>
+                        <p>L'équipe de géobiologistes a confirmé la présence de <span class="highlight">microorganismes vivants</span> à 847 mètres sous la surface. Cette découverte révolutionne notre compréhension de la vie dans l'univers.</p>
+
+                        <h3>🌌 Expansion Future</h3>
+                        
+                        <p>SpaceX et la NASA planifient l'envoi de 500 nouveaux colons d'ici 2027. La colonie <span class="highlight">"New Berlin"</span> sera établie à 2,000 km, créant le premier réseau de villes martiennes.</p>
+
+                        <h4>🚀 Prochaines Étapes</h4>
+                        <ul>
+                            <li><strong>2026 :</strong> Première naissance humaine sur Mars</li>
+                            <li><strong>2027 :</strong> Production industrielle de carburant pour fusées</li>
+                            <li><strong>2028 :</strong> Première université martienne</li>
+                            <li><strong>2030 :</strong> 10,000 habitants permanents</li>
+                        </ul>
+
+                        <p>Cette réussite ouvre l'ère de l'expansion interplanétaire, transformant la science-fiction en réalité quotidienne.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="article-full">
+                <div class="article-header">
+                    <img src="images/underwater-discovery.jpg" alt="Découverte Océanique" class="article-image-large">
+                    <div class="article-overlay">
+                        <span class="article-category">ARCHÉOLOGIE MARINE</span>
+                        <h2 class="article-title-large">Atlantide Découverte : Civilisation Avancée Vieille de 12,000 Ans</h2>
+                        <p class="article-date">📅 25 septembre 2025 • Par Prof. Marina Santos, Archéologie Marine</p>
+                    </div>
+                </div>
+                <div class="article-body">
+                    <div class="article-intro">
+                        La découverte du siècle bouleverse l'histoire humaine. Une expédition internationale a localisé les ruines d'une civilisation technologiquement avancée dans la fosse des Mariannes. Ces structures défient notre compréhension de l'évolution humaine.
+                    </div>
+                    
+                    <div class="article-content">
+                        <h3>🏛️ Structures Impossibles</h3>
+                        
+                        <p>À 8,847 mètres de profondeur, les ruines s'étendent sur <span class="highlight">67 km²</span>. Les bâtiments en cristal synthétique résistent parfaitement à la pression océanique, utilisant des matériaux inconnus de notre science moderne.</p>
+
+                        <div class="quote-box">
+                            Cette découverte remet en question tout ce que nous savions sur l'histoire de l'humanité. Nous face à une technologie qui dépasse la nôtre.
+                            <footer>— Dr. Robert Ballard, Explorateur Océanique</footer>
+                        </div>
+
+                        <h4>🔍 Artefacts Révolutionnaires</h4>
+                        
+                        <div class="data-list">
+                            <h4>🏺 Objets Découverts :</h4>
+                            <ul>
+                                <li><strong>Cristaux énergétiques :</strong> Stockage d'énergie pendant 12,000 ans</li>
+                                <li><strong>Tablettes holographiques :</strong> Données 3D toujours fonctionnelles</li>
+                                <li><strong>Matériaux auto-réparateurs :</strong> Structures intactes malgré les millénaires</li>
+                                <li><strong>Systèmes de purification :</strong> Eau parfaitement pure après 120 siècles</li>
+                                <li><strong>Archives génétiques :</strong> ADN de 15,000 espèces conservé</li>
+                            </ul>
+                        </div>
+
+                        <h3>🧬 Révélations Génétiques</h3>
+                        
+                        <p>L'analyse ADN des restes trouvés révèle des <span class="highlight">modifications génétiques impossibles</span> pour l'époque. Cette civilisation maîtrisait l'ingénierie génétique 10,000 ans avant notre ère.</p>
+
+                        <h4>📚 Déchiffrage en Cours</h4>
+                        <p>Une équipe de 340 linguistes travaille sur le déchiffrage des 2.4 millions de symboles découverts. Les premières traductions évoquent des "voyages entre les étoiles" et des "gardiens de la Terre".</p>
+
+                        <h3>🌍 Impact sur Notre Civilisation</h3>
+                        
+                        <p>Les technologies découvertes pourraient révolutionner l'énergie propre, la médecine et l'exploration spatiale. L'ONU a créé un consortium international pour étudier ces innovations de manière éthique.</p>
+
+                        <p>Cette découverte suggère que l'humanité a déjà atteint des niveaux technologiques extraordinaires, puis a tout perdu. Une leçon d'humilité pour notre civilisation moderne.</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <!-- Page Futur Tech -->
+        <div id="futur" class="page-content">
+            <div class="page-header">
+                <h1 class="page-title">🔮 TECHNOLOGIES DU FUTUR</h1>
+                <p class="page-subtitle">Ce Qui Nous Attend Dans La Prochaine Décennie - Vision 2030</p>
+            </div>
+
+            <article class="article-full">
+                <div class="article-header">
+                    <img src="images/flying-car-future.jpg" alt="Voiture Volante" class="article-image-large">
+                    <div class="article-overlay">
+                        <span class="article-category">TRANSPORT RÉVOLUTIONNAIRE</span>
+                        <h2 class="article-title-large">Voitures Volantes : Commercialisation Imminente en 2026</h2>
+                        <p class="article-date">📅 18 octobre 2025 • Par Alex Thompson, Tech Futurist</p>
+                    </div>
+                </div>
+                <div class="article-body">
+                    <div class="article-intro">
+                        La révolution du transport aérien personnel débute en 2026. Après des années de développement, les voitures volantes autonomes d'AirMobility Corp ont reçu l'approbation finale de l'aviation civile mondiale. La première ligne commerciale reliera Paris à Londres en 47 minutes.
+                    </div>
+                    
+                    <div class="article-content">
+                        <h3>✈️ AeroTaxi : Le Transport du Futur</h3>
+                        
+                        <p>L'<span class="highlight">AeroTaxi X1</span> combine propulsion électrique silencieuse et navigation autonome par IA. Capable de transporter 4 passagers à 350 km/h, il révolutionne les déplacements urbains et intercités.</p>
+
+                        <div class="quote-box">
+                            Nous abolissons les embouteillages. Demain, se déplacer en ville sera aussi simple que prendre l'ascenseur, mais dans les trois dimensions.
+                            <footer>— Dr. Elena Vasquez, CEO AirMobility Corp</footer>
+                        </div>
+
+                        <h4>🚁 Spécifications Techniques Révolutionnaires</h4>
+                        
+                        <div class="data-list">
+                            <h4>⚡ Performance AeroTaxi X1 :</h4>
+                            <ul>
+                                <li><strong>Vitesse max :</strong> 350 km/h à 500m d'altitude</li>
+                                <li><strong>Autonomie :</strong> 287 km par charge (batteries quantiques)</li>
+                                <li><strong>Temps de charge :</strong> 12 minutes pour 100% (ultra-rapide)</li>
+                                <li><strong>Niveau sonore :</strong> 34 dB (plus silencieux qu'une voiture électrique)</li>
+                                <li><strong>Sécurité :</strong> 23 systèmes redondants, 0 accident en 45,000 heures de test</li>
+                            </ul>
+                        </div>
+
+                        <h3>🌐 Réseau Aérien Mondial</h3>
+                        
+                        <p>D'ici 2028, <span class="highlight">347 villes</span> seront connectées par le réseau AeroTaxi. Les plateformes d'embarquement sur les toits des gratte-ciels transforment le paysage urbain.</p>
+
+                        <h4>🏙️ Infrastructure Aérienne</h4>
+                        <p><strong>Vertiports urbains :</strong> 2,847 plateformes en construction mondiale</p>
+                        <p><strong>Couloirs aériens :</strong> Autoroutes du ciel avec contrôle IA intégré</p>
+                        <p><strong>Stations de charge :</strong> Recharge en vol par induction magnétique</p>
+
+                        <h3>💰 Révolution Économique</h3>
+                        
+                        <p>Le prix initial de 15€/km chutera à <span class="highlight">3€/km en 2030</span> grâce à la production de masse. Goldman Sachs estime ce marché à 2.8 trillions d'euros d'ici 2035.</p>
+
+                        <h4>🌱 Impact Environnemental</h4>
+                        <p>100% électrique avec énergie renouvelable, l'AeroTaxi réduit les émissions urbaines de 67% en remplaçant les transports terrestres polluants.</p>
+
+                        <p>Cette révolution transforme non seulement nos déplacements, mais redessine l'architecture urbaine et notre rapport à l'espace.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="article-full">
+                <div class="article-header">
+                    <img src="images/future-smart-city.jpg" alt="Ville Intelligente" class="article-image-large">
+                    <div class="article-overlay">
+                        <span class="article-category">URBANISME FUTURISTE</span>
+                        <h2 class="article-title-large">Singapour 3.0 : La Première Ville 100% Autonome</h2>
+                        <p class="article-date">📅 22 octobre 2025 • Par Dr. Maya Patel, Urban Planning MIT</p>
+                    </div>
+                </div>
+                <div class="article-body">
+                    <div class="article-intro">
+                        Singapour devient le 1er novembre 2025 la première métropole entièrement gérée par l'intelligence artificielle. Traffic, énergie, sécurité, services publics : tout est optimisé en temps réel par l'IA "CityMind" pour 6,2 millions d'habitants.
+                    </div>
+                    
+                    <div class="article-content">
+                        <h3>🏙️ CityMind : Le Cerveau de la Ville</h3>
+                        
+                        <p><span class="highlight">CityMind</span> traite 847 téraoctets de données urbaines par seconde. Cette IA quantique prédit et résout les problèmes avant qu'ils n'impactent les citoyens, créant une harmonie urbaine parfaite.</p>
+
+                        <div class="quote-box">
+                            Imaginez une ville qui s'adapte à vos besoins avant même que vous les exprimiez. C'est la magie de Singapour 3.0.
+                            <footer>— Lee Hsien Yang, Premier Ministre Singapour</footer>
+                        </div>
+
+                        <h4>🚦 Optimisation Totale</h4>
+                        
+                        <div class="data-list">
+                            <h4>🎯 Performance CityMind :</h4>
+                            <ul>
+                                <li><strong>Traffic fluide :</strong> 0 embouteillage, temps de trajet optimaux</li>
+                                <li><strong>Énergie verte :</strong> 100% renouvelable, 0 gaspillage</li>
+                                <li><strong>Sécurité parfaite :</strong> Criminalité réduite de 94%</li>
+                                <li><strong>Services prédictifs :</strong> Besoins anticipés et satisfaits</li>
+                                <li><strong>Pollution zéro :</strong> Air plus pur qu'en forêt tropicale</li>
+                            </ul>
+                        </div>
+
+                        <h3>🌱 Écosystème Urbain Parfait</h3>
+                        
+                        <p>La ville intègre <span class="highlight">2,3 millions de capteurs</span> IoT qui monitent air, eau, bruit, température. CityMind ajuste instantanément ventilation, irrigation, éclairage pour maintenir des conditions optimales.</p>
+
+                        <h4>🏢 Architecture Intelligente</h4>
+                        <p>Les bâtiments s'auto-régulent : façades qui filtrent la pollution, toits qui récoltent l'eau de pluie, structures qui s'adaptent au climat en temps réel.</p>
+
+                        <h3>👥 Qualité de Vie Révolutionnaire</h3>
+                        
+                        <p>Les habitants vivent dans un confort inégalé : transport personnel sur demande, air conditionné urbain, espaces verts qui s'adaptent aux préférences de chacun.</p>
+
+                        <h4>🌍 Modèle Mondial</h4>
+                        <p>47 villes ont déjà signé pour adopter CityMind d'ici 2027 : Toronto, Amsterdam, Seoul, Dubai, Barcelona...</p>
+
+                        <p>Singapour 3.0 prouve qu'une métropole peut être à la fois hyper-technologique et parfaitement humaine.</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <script>
+        console.log('📰 Magazine A SAVOIR avec contenu substantiel chargé !');
+        
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            const buttons = document.querySelectorAll('.nav-button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(pageId).classList.add('active');
+            event.target.classList.add('active');
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function openAdmin() {
+            document.getElementById('adminPanel').classList.add('open');
+            document.getElementById('overlay').classList.add('show');
+        }
+        
+        function closeAdmin() {
+            document.getElementById('adminPanel').classList.remove('open');
+            document.getElementById('overlay').classList.remove('show');
+        }
+        
+        function generateImage() {
+            const prompt = document.getElementById('imagePrompt').value;
+            if (!prompt) {
+                alert('⚠️ Veuillez entrer une description pour l\'image !');
+                return;
+            }
+            
+            alert('🎨 Génération d\'image en cours...\\n\\nDescription: ' + prompt + '\\n\\n✨ L\'image sera automatiquement ajoutée !');
+            document.getElementById('imagePrompt').value = '';
+        }
+        
+        function addArticle() {
+            const title = document.getElementById('articleTitle').value;
+            const content = document.getElementById('articleContent').value;
+            
+            if (!title || !content) {
+                alert('⚠️ Veuillez remplir le titre ET le contenu !');
+                return;
+            }
+            
+            alert('✅ Article ajouté avec succès !\\n\\nTitre: ' + title);
+            
+            document.getElementById('articleTitle').value = '';
+            document.getElementById('articleContent').value = '';
+        }
+    </script>
+</body>
+</html>

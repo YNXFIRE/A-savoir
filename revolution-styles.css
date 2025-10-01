@@ -1,0 +1,663 @@
+/**
+ * 🚀 MAteacher RÉVOLUTION - Styles Ultra-Avancés
+ * Design futuriste pour l'éducation révolutionnaire
+ */
+
+/* Variables CSS révolutionnaires */
+:root {
+    --neon-blue: #00f2fe;
+    --neon-purple: #4facfe;
+    --neon-green: #00ff88;
+    --neon-orange: #ff6b35;
+    --dark-bg: #0a0a0a;
+    --card-bg: rgba(15, 25, 35, 0.8);
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.8);
+}
+
+/* Animations révolutionnaires globales */
+@keyframes neonGlow {
+    0%, 100% { 
+        box-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue), 0 0 15px var(--neon-blue);
+        text-shadow: 0 0 5px var(--neon-blue);
+    }
+    50% { 
+        box-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue), 0 0 30px var(--neon-blue);
+        text-shadow: 0 0 10px var(--neon-blue);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(2deg); }
+}
+
+@keyframes slideInFromLeft {
+    from { 
+        opacity: 0; 
+        transform: translateX(-100px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateX(0); 
+    }
+}
+
+@keyframes slideInFromRight {
+    from { 
+        opacity: 0; 
+        transform: translateX(100px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateX(0); 
+    }
+}
+
+@keyframes fadeInUp {
+    from { 
+        opacity: 0; 
+        transform: translateY(30px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+/* Classes utilitaires */
+.neon { animation: neonGlow 2s ease-in-out infinite; }
+.pulse { animation: pulse 2s ease-in-out infinite; }
+.float { animation: float 4s ease-in-out infinite; }
+.slide-left { animation: slideInFromLeft 0.6s ease-out; }
+.slide-right { animation: slideInFromRight 0.6s ease-out; }
+.fade-up { animation: fadeInUp 0.5s ease-out; }
+
+/* Layout principal révolutionnaire */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #001122 100%);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Particules de fond */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(2px 2px at 20px 30px, var(--neon-blue), transparent),
+        radial-gradient(2px 2px at 40px 70px, var(--neon-purple), transparent),
+        radial-gradient(1px 1px at 90px 40px, var(--neon-green), transparent),
+        radial-gradient(1px 1px at 130px 80px, var(--neon-orange), transparent);
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    opacity: 0.1;
+    animation: float 20s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Header révolutionnaire */
+.revolution-header {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(20px);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid rgba(0, 242, 254, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo {
+    font-size: 3rem;
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.brand-text h1 {
+    margin: 0;
+    font-size: 2rem;
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 900;
+}
+
+.brand-text p {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* Navigation révolutionnaire */
+.nav-controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.nav-btn {
+    padding: 0.8rem 1.5rem;
+    background: rgba(0, 242, 254, 0.1);
+    border: 2px solid rgba(0, 242, 254, 0.3);
+    color: var(--text-primary);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.nav-btn:hover {
+    background: rgba(0, 242, 254, 0.2);
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+    transform: translateY(-2px);
+}
+
+.nav-btn.premium {
+    background: linear-gradient(45deg, var(--neon-orange), var(--neon-purple));
+    border: none;
+    color: white;
+}
+
+/* Container principal */
+.revolution-container {
+    display: grid;
+    grid-template-columns: 300px 1fr 350px;
+    gap: 2rem;
+    padding: 2rem;
+    min-height: calc(100vh - 100px);
+}
+
+/* Sidebar gauche */
+.revolution-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Cards révolutionnaires */
+.revolution-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(0, 242, 254, 0.2);
+    border-radius: 20px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.revolution-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple), var(--neon-green));
+    opacity: 0.6;
+}
+
+.revolution-card:hover {
+    border-color: var(--neon-blue);
+    box-shadow: 0 10px 30px rgba(0, 242, 254, 0.2);
+    transform: translateY(-5px);
+}
+
+.revolution-card h2 {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.4rem;
+    color: var(--neon-blue);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Zone de chat ultra-avancée */
+.ultra-chat {
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+}
+
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(0, 242, 254, 0.2);
+    margin-bottom: 1rem;
+}
+
+.ai-avatar {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.messages-zone {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    scroll-behavior: smooth;
+}
+
+/* Messages révolutionnaires */
+.revolution-message {
+    margin-bottom: 1.5rem;
+    padding: 1.2rem;
+    border-radius: 18px;
+    max-width: 85%;
+    position: relative;
+}
+
+.user-message {
+    background: linear-gradient(135deg, rgba(79, 172, 254, 0.2), rgba(0, 242, 254, 0.1));
+    border: 1px solid rgba(79, 172, 254, 0.3);
+    margin-left: auto;
+    border-top-right-radius: 6px;
+}
+
+.ai-message {
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(0, 242, 254, 0.1));
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    margin-right: auto;
+    border-top-left-radius: 6px;
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+.sender-info {
+    font-weight: 600;
+    color: var(--neon-blue);
+}
+
+.timestamp {
+    opacity: 0.6;
+    font-size: 0.8rem;
+}
+
+.message-content {
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.message-content strong {
+    color: var(--neon-green);
+    font-weight: 700;
+}
+
+.message-content em {
+    color: var(--neon-orange);
+    font-style: normal;
+    font-weight: 500;
+}
+
+/* Zone d'input révolutionnaire */
+.input-zone {
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem;
+    border-top: 1px solid rgba(0, 242, 254, 0.2);
+}
+
+.message-input {
+    flex: 1;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.4);
+    border: 2px solid rgba(0, 242, 254, 0.3);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.message-input:focus {
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+}
+
+.message-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.send-btn {
+    padding: 1rem;
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+    border: none;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    min-width: 50px;
+}
+
+.send-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 242, 254, 0.4);
+}
+
+.send-btn:active {
+    transform: scale(0.95);
+}
+
+/* Interface de traduction avancée */
+.translation-advanced {
+    background: var(--card-bg);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(0, 255, 136, 0.3);
+    border-radius: 20px;
+    padding: 2rem;
+    margin: 2rem 0;
+}
+
+.translation-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.language-select {
+    flex: 1;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(0, 255, 136, 0.3);
+    border-radius: 10px;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.swap-btn {
+    padding: 1rem;
+    background: rgba(0, 255, 136, 0.2);
+    border: 2px solid rgba(0, 255, 136, 0.4);
+    border-radius: 10px;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.swap-btn:hover {
+    background: rgba(0, 255, 136, 0.3);
+    transform: rotate(180deg);
+}
+
+.translation-areas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.text-area {
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(0, 255, 136, 0.3);
+    border-radius: 15px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    line-height: 1.6;
+    min-height: 150px;
+    resize: vertical;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.text-area:focus {
+    border-color: var(--neon-green);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+}
+
+.text-area::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Actions rapides */
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.quick-btn {
+    padding: 1rem 1.5rem;
+    background: rgba(0, 255, 136, 0.1);
+    border: 2px solid rgba(0, 255, 136, 0.3);
+    border-radius: 12px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    text-align: center;
+}
+
+.quick-btn:hover {
+    background: rgba(0, 255, 136, 0.2);
+    border-color: var(--neon-green);
+    box-shadow: 0 5px 15px rgba(0, 255, 136, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Feature cards */
+.feature-card {
+    background: var(--card-bg);
+    border: 2px solid rgba(0, 242, 254, 0.2);
+    border-radius: 15px;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.feature-card:hover {
+    border-color: var(--neon-blue);
+    box-shadow: 0 8px 25px rgba(0, 242, 254, 0.2);
+    transform: translateY(-3px);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 1rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.feature-card h3 {
+    margin: 0 0 0.5rem 0;
+    color: var(--neon-blue);
+    font-size: 1.2rem;
+}
+
+/* Modes d'IA */
+.ai-mode-selector {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.ai-mode-btn {
+    padding: 1rem;
+    background: var(--card-bg);
+    border: 2px solid rgba(0, 242, 254, 0.3);
+    border-radius: 12px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.ai-mode-btn.active {
+    border-color: var(--neon-blue);
+    background: rgba(0, 242, 254, 0.2);
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+}
+
+.ai-mode-btn:hover {
+    border-color: var(--neon-blue);
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .revolution-container {
+        grid-template-columns: 250px 1fr 300px;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 968px) {
+    .revolution-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .revolution-sidebar {
+        order: 2;
+    }
+    
+    .ultra-chat {
+        order: 1;
+        height: 50vh;
+    }
+    
+    .translation-areas {
+        grid-template-columns: 1fr;
+    }
+    
+    .translation-controls {
+        flex-direction: column;
+    }
+    
+    .quick-actions {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .revolution-header {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .nav-controls {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .brand-text h1 {
+        font-size: 1.5rem;
+    }
+    
+    .revolution-container {
+        padding: 1rem;
+    }
+    
+    .revolution-card {
+        padding: 1.5rem;
+    }
+    
+    .ai-mode-selector {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Scrollbar personnalisée */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, var(--neon-purple), var(--neon-blue));
+}
+
+/* Effets spéciaux */
+.sparkle {
+    position: relative;
+}
+
+.sparkle::before,
+.sparkle::after {
+    content: '✨';
+    position: absolute;
+    animation: float 2s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.sparkle::before {
+    top: -10px;
+    left: -10px;
+    animation-delay: -0.5s;
+}
+
+.sparkle::after {
+    bottom: -10px;
+    right: -10px;
+    animation-delay: -1s;
+}
+
+/* Mode immersion */
+.immersion-mode {
+    filter: hue-rotate(60deg) saturate(1.2);
+}
+
+.immersion-mode .revolution-card {
+    border-color: var(--neon-green);
+}
+
+.immersion-mode .ai-avatar {
+    background: linear-gradient(45deg, var(--neon-green), var(--neon-blue));
+}

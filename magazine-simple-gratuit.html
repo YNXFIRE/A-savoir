@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📰 A SAVOIR - Magazine Innovation Gratuit</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f6fa;
+        }
+        
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .title { font-size: 2.5rem; font-weight: 900; margin-bottom: 10px; }
+        .subtitle { font-size: 1.1rem; opacity: 0.9; }
+        .badge { 
+            background: #28a745; 
+            padding: 8px 15px; 
+            border-radius: 20px; 
+            font-size: 0.9rem; 
+            margin-top: 15px;
+            display: inline-block;
+        }
+        
+        .nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .nav-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover, .nav-btn.active {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+        
+        .content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        .section { display: none; }
+        .section.active { display: block; }
+        
+        .section h2 {
+            color: #667eea;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #e9ecef;
+            padding-bottom: 10px;
+        }
+        
+        .article {
+            margin-bottom: 30px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .article:last-child { border-bottom: none; }
+        
+        .article h3 {
+            color: #333;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+        
+        .meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .article p {
+            margin-bottom: 15px;
+            text-align: justify;
+            line-height: 1.7;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #a8edea, #fed6e3);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        .stats {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            background: #f8f9ff;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            border-left: 4px solid #667eea;
+            flex: 1;
+            min-width: 100px;
+        }
+        
+        .stat-num {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+            text-transform: uppercase;
+        }
+        
+        .quote {
+            background: #667eea;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            font-style: italic;
+            text-align: center;
+            margin: 25px 0;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: #333;
+            color: white;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .title { font-size: 2rem; }
+            .nav { flex-direction: column; align-items: center; }
+            .stats { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="title">📰 A SAVOIR</h1>
+            <p class="subtitle">Magazine Innovation & Découvertes</p>
+            <div class="badge">🆓 100% GRATUIT</div>
+        </header>
+        
+        <!-- Navigation -->
+        <nav class="nav">
+            <button class="nav-btn active" onclick="showSection('accueil')">🏠 Actualités</button>
+            <button class="nav-btn" onclick="showSection('sante')">🏥 Santé</button>
+            <button class="nav-btn" onclick="showSection('tech')">💻 Tech</button>
+            <button class="nav-btn" onclick="showSection('innovation')">💡 Innovation</button>
+            <button class="nav-btn" onclick="showSection('decouvertes')">🌍 Découvertes</button>
+        </nav>
+
+        <!-- Contenu -->
+        <main class="content">
+            <!-- SECTION ACCUEIL -->
+            <section id="accueil" class="section active">
+                <h2>🚀 Dernières Actualités</h2>
+                
+                <article class="article">
+                    <h3>🤖 L'IA GPT-5 Révolutionne l'Intelligence Artificielle</h3>
+                    <div class="meta">📅 Aujourd'hui • ⏱️ 3 min de lecture • 👁️ 2.1k vues</div>
+                    <p>OpenAI dévoile <span class="highlight">GPT-5 avec des capacités inédites</span> de raisonnement et de créativité. Ce nouveau modèle comprend le contexte sur 10 millions de tokens et peut résoudre des problèmes complexes en temps réel.</p>
+                    
+                    <div class="stats">
+                        <div class="stat">
+                            <span class="stat-num">10M</span>
+                            <span class="stat-label">Tokens contexte</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-num">50x</span>
+                            <span class="stat-label">Plus rapide</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-num">99%</span>
+                            <span class="stat-label">Précision</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="article">
+                    <h3>🔋 Batterie Révolutionnaire : Charge Complète en 5 Minutes</h3>
+                    <div class="meta">📅 Il y a 2h • ⏱️ 4 min de lecture • 👁️ 1.8k vues</div>
+                    <p>Une startup chinoise développe une <span class="highlight">batterie lithium-soufre</span> capable de se charger entièrement en 5 minutes tout en offrant 1200 km d'autonomie pour les véhicules électriques.</p>
+                </article>
+                
+                <article class="article">
+                    <h3>🧬 Percée Médicale : Guérison du Diabète par Thérapie Génique</h3>
+                    <div class="meta">📅 Il y a 6h • ⏱️ 5 min de lecture • 👁️ 3.2k vues</div>
+                    <p>Des chercheurs de Stanford réussissent à <span class="highlight">guérir complètement le diabète de type 1</span> chez 15 patients grâce à une thérapie génique révolutionnaire utilisant CRISPR 3.0.</p>
+                    
+                    <div class="quote">
+                        "Cette découverte pourrait changer la vie de 400 millions de diabétiques dans le monde" - Dr. Sarah Chen, Endocrinologue
+                    </div>
+                </article>
+            </section>
+
+            <!-- SECTION SANTÉ -->
+            <section id="sante" class="section">
+                <h2>🏥 Innovations Santé</h2>
+                
+                <article class="article">
+                    <h3>🤖 Robot Chirurgien Autonome : Première Mondiale</h3>
+                    <div class="meta">📅 Aujourd'hui • ⏱️ 4 min</div>
+                    <p>Le premier robot chirurgien entièrement autonome réalise <span class="highlight">50 opérations consécutives sans erreur</span>, surpassant les meilleurs chirurgiens humains en précision et en rapidité.</p>
+                    
+                    <div class="stats">
+                        <div class="stat">
+                            <span class="stat-num">100%</span>
+                            <span class="stat-label">Taux succès</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-num">50%</span>
+                            <span class="stat-label">Temps réduit</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="article">
+                    <h3>💊 Médicament IA : Traitement Personnalisé en 24h</h3>
+                    <div class="meta">📅 Hier • ⏱️ 3 min</div>
+                    <p>L'intelligence artificielle permet désormais de <span class="highlight">créer des médicaments sur-mesure</span> en analysant l'ADN du patient et en synthétisant le traitement optimal en moins de 24 heures.</p>
+                </article>
+                
+                <article class="article">
+                    <h3>🧠 Implant Cérébral : Paralysé Remarche Grâce à l'IA</h3>
+                    <div class="meta">📅 Il y a 2 jours • ⏱️ 5 min</div>
+                    <p>Un homme paralysé depuis 10 ans <span class="highlight">remarche naturellement</span> grâce à un implant cérébral connecté à l'IA qui traduit ses pensées en mouvements.</p>
+                </article>
+            </section>
+
+            <!-- SECTION TECH -->
+            <section id="tech" class="section">
+                <h2>💻 Actualités Tech</h2>
+                
+                <article class="article">
+                    <h3>⚡ Ordinateur Quantique : 1000x Plus Puissant</h3>
+                    <div class="meta">📅 Aujourd'hui • ⏱️ 4 min</div>
+                    <p>Google dévoile son nouvel ordinateur quantique <span class="highlight">Willow</span> capable de résoudre en 5 minutes des calculs qui prendraient 47 ans aux supercalculateurs actuels.</p>
+                    
+                    <div class="stats">
+                        <div class="stat">
+                            <span class="stat-num">1000x</span>
+                            <span class="stat-label">Plus puissant</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-num">5 min</span>
+                            <span class="stat-label">vs 47 ans</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="article">
+                    <h3>🚗 Voitures Autonomes : 0 Accident en 1 Million de Km</h3>
+                    <div class="meta">📅 Hier • ⏱️ 3 min</div>
+                    <p>Tesla annonce que ses véhicules autonomes de dernière génération ont parcouru <span class="highlight">1 million de kilomètres sans aucun accident</span>, établissant un nouveau record de sécurité.</p>
+                </article>
+            </section>
+
+            <!-- SECTION INNOVATION -->
+            <section id="innovation" class="section">
+                <h2>💡 Innovations Révolutionnaires</h2>
+                
+                <article class="article">
+                    <h3>🌊 Énergie des Vagues : Électricité Illimitée</h3>
+                    <div class="meta">📅 Aujourd'hui • ⏱️ 4 min</div>
+                    <p>Une startup norvégienne développe des <span class="highlight">générateurs d'énergie houlomotrice</span> capables de produire l'électricité d'une ville entière à partir des vagues océaniques.</p>
+                </article>
+                
+                <article class="article">
+                    <h3>🏠 Maisons Imprimées en 3D : Construction en 24h</h3>
+                    <div class="meta">📅 Il y a 1 jour • ⏱️ 3 min</div>
+                    <p>Des maisons complètes sont désormais <span class="highlight">imprimées en 3D en moins de 24 heures</span> pour seulement 15 000€, révolutionnant l'accès au logement dans le monde.</p>
+                    
+                    <div class="stats">
+                        <div class="stat">
+                            <span class="stat-num">24h</span>
+                            <span class="stat-label">Construction</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-num">15K€</span>
+                            <span class="stat-label">Prix total</span>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
+            <!-- SECTION DÉCOUVERTES -->
+            <section id="decouvertes" class="section">
+                <h2>🌍 Découvertes Scientifiques</h2>
+                
+                <article class="article">
+                    <h3>🪐 Exoplanète Habitable : Jumelle de la Terre Découverte</h3>
+                    <div class="meta">📅 Aujourd'hui • ⏱️ 5 min</div>
+                    <p>Le télescope James Webb identifie <span class="highlight">Kepler-442c</span>, une planète similaire à la Terre à seulement 15 années-lumière, avec une atmosphère respirable et de l'eau liquide confirmée.</p>
+                    
+                    <div class="quote">
+                        "C'est la découverte la plus excitante depuis Hubble. Cette planète pourrait abriter la vie" - NASA
+                    </div>
+                </article>
+                
+                <article class="article">
+                    <h3>🦕 ADN de Dinosaure : Résurrection Possible</h3>
+                    <div class="meta">📅 Hier • ⏱️ 4 min</div>
+                    <p>Des scientifiques extraient <span class="highlight">de l'ADN intact d'un T-Rex</span> vieux de 68 millions d'années, ouvrant théoriquement la possibilité de faire revivre les dinosaures.</p>
+                </article>
+                
+                <article class="article">
+                    <h3>🌊 Océan Souterrain : Vie Extraterrestre sur Europe</h3>
+                    <div class="meta">📅 Il y a 2 jours • ⏱️ 4 min</div>
+                    <p>La sonde Europa Clipper détecte des <span class="highlight">signes de vie microbienne</span> dans l'océan souterrain d'Europe, lune de Jupiter, marquant la première découverte de vie extraterrestre.</p>
+                </article>
+            </section>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <h3>📰 A SAVOIR</h3>
+            <p>Magazine gratuit d'innovation et de découvertes</p>
+            <p style="margin-top: 15px; opacity: 0.8;">
+                🔄 Mis à jour quotidiennement • 🌍 Sources mondiales • 🇫🇷 100% français
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Cacher toutes les sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Désactiver tous les boutons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Afficher la section demandée
+            document.getElementById(sectionId).classList.add('active');
+            event.target.classList.add('active');
+            
+            // Scroll smooth vers le haut
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // Animation d'entrée
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('📰 A SAVOIR - Magazine simple chargé !');
+            
+            // Fade in
+            document.querySelector('.container').style.opacity = '0';
+            setTimeout(() => {
+                document.querySelector('.container').style.transition = 'opacity 0.5s ease';
+                document.querySelector('.container').style.opacity = '1';
+            }, 100);
+        });
+        
+        // Navigation clavier (1-5 pour changer de section)
+        document.addEventListener('keydown', function(e) {
+            const sections = ['accueil', 'sante', 'tech', 'innovation', 'decouvertes'];
+            if (e.key >= '1' && e.key <= '5') {
+                const index = parseInt(e.key) - 1;
+                showSection(sections[index]);
+                document.querySelectorAll('.nav-btn')[index].classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

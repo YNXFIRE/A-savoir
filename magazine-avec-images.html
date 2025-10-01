@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📰 A SAVOIR - Magazine Innovation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: rgba(255,255,255,0.95);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .admin-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: #ff6b6b;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .admin-btn:hover {
+            background: #ff5252;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .badge {
+            background: #28a745;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-top: 10px;
+            display: inline-block;
+        }
+        
+        .nav-tabs {
+            background: rgba(255,255,255,0.9);
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .tab-btn {
+            background: #f8f9fa;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            flex: 1;
+            min-width: 120px;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn.active {
+            background: #007bff;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .tab-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .content-area {
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .section {
+            display: none;
+        }
+        
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 25px;
+            text-align: center;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 10px;
+        }
+        
+        .articles-grid {
+            display: grid;
+            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        }
+        
+        .article {
+            background: #f8f9fa;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .article:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .article-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid #007bff;
+        }
+        
+        .article-content {
+            padding: 20px;
+        }
+        
+        .article h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .article-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            padding: 8px 12px;
+            background: #e9ecef;
+            border-radius: 6px;
+        }
+        
+        .article p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .read-more {
+            color: #007bff;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: border-bottom 0.3s;
+        }
+        
+        .read-more:hover {
+            border-bottom: 2px solid #007bff;
+        }
+        
+        .pub-space {
+            background: #fff3cd;
+            border: 2px dashed #ffc107;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+            border-radius: 10px;
+            color: #856404;
+            font-weight: bold;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .tab-btn {
+                min-width: auto;
+            }
+        }
+        
+        /* Admin Panel */
+        .admin-panel {
+            position: fixed;
+            top: 0;
+            left: -400px;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+            padding: 20px;
+            transition: left 0.3s ease;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .admin-panel.open {
+            left: 0;
+        }
+        
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .close-admin {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .admin-section {
+            margin-bottom: 25px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .admin-section h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .btn {
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        
+        .btn:hover {
+            background: #0056b3;
+        }
+        
+        .btn-danger {
+            background: #dc3545;
+        }
+        
+        .btn-danger:hover {
+            background: #c82333;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            z-index: 999;
+        }
+        
+        .overlay.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="closeAdmin()"></div>
+    
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-header">
+            <h2>🔧 Administration</h2>
+            <button class="close-admin" onclick="closeAdmin()">✕</button>
+        </div>
+        
+        <div class="admin-section">
+            <h3>📷 Génération d'Images</h3>
+            <div class="form-group">
+                <label>Type de contenu:</label>
+                <select id="imageType">
+                    <option value="person">👥 Personne (scientifique, chercheur)</option>
+                    <option value="technology">💻 Technologie/Objet</option>
+                    <option value="concept">🔬 Concept scientifique</option>
+                    <option value="landscape">🌍 Paysage/Environnement</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Description de l'image:</label>
+                <textarea id="imageDescription" placeholder="Ex: Scientifique femme dans un laboratoire moderne..."></textarea>
+            </div>
+            <button class="btn" onclick="generateNewImage()">🎨 Générer Image</button>
+        </div>
+        
+        <div class="admin-section">
+            <h3>📝 Gestion Contenu</h3>
+            <div class="form-group">
+                <label>Section:</label>
+                <select id="contentSection">
+                    <option value="actualites">🚀 Actualités</option>
+                    <option value="sante">🏥 Santé</option>
+                    <option value="tech">💻 Tech</option>
+                    <option value="innovation">🔬 Innovation</option>
+                    <option value="decouvertes">🌟 Découvertes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Titre de l'article:</label>
+                <input type="text" id="articleTitle" placeholder="Titre accrocheur...">
+            </div>
+            <div class="form-group">
+                <label>Contenu:</label>
+                <textarea id="articleContent" placeholder="Contenu de l'article..." rows="4"></textarea>
+            </div>
+            <button class="btn" onclick="addArticle()">➕ Ajouter Article</button>
+        </div>
+        
+        <div class="admin-section">
+            <h3>💰 Espaces Publicitaires</h3>
+            <div class="form-group">
+                <label>Lien publicitaire:</label>
+                <input type="url" id="adLink" placeholder="https://...">
+            </div>
+            <div class="form-group">
+                <label>Texte de la publicité:</label>
+                <input type="text" id="adText" placeholder="Texte publicitaire...">
+            </div>
+            <div class="form-group">
+                <label>Image publicitaire (URL):</label>
+                <input type="url" id="adImage" placeholder="https://...image.jpg">
+            </div>
+            <button class="btn" onclick="addAdvertisement()">📢 Ajouter Pub</button>
+        </div>
+        
+        <div class="admin-section">
+            <h3>⚙️ Actions</h3>
+            <button class="btn" onclick="generateAllImages()">🔄 Regénérer toutes les images</button>
+            <button class="btn btn-danger" onclick="resetContent()">🗑️ Réinitialiser contenu</button>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="header">
+            <button class="admin-btn" onclick="openAdmin()">🔧 ADMIN</button>
+            <h1>📰 A SAVOIR</h1>
+            <p>Votre magazine d'innovation, technologie et découvertes</p>
+            <span class="badge">✨ 100% GRATUIT</span>
+        </div>
+        
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">50K+</div>
+                <div class="stat-label">Lecteurs</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">200+</div>
+                <div class="stat-label">Articles</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Sections</div>
+            </div>
+        </div>
+        
+        <nav class="nav-tabs">
+            <button class="tab-btn active" onclick="showSection('actualites')">🚀 Actualités</button>
+            <button class="tab-btn" onclick="showSection('sante')">🏥 Santé</button>
+            <button class="tab-btn" onclick="showSection('tech')">💻 Tech</button>
+            <button class="tab-btn" onclick="showSection('innovation')">🔬 Innovation</button>
+            <button class="tab-btn" onclick="showSection('decouvertes')">🌟 Découvertes</button>
+        </nav>
+        
+        <div class="content-area">
+            <!-- Section Actualités -->
+            <section id="actualites" class="section active">
+                <h2 class="section-title">🚀 Dernières Actualités</h2>
+                <div class="articles-grid">
+                    <article class="article">
+                        <img src="images/chatgpt5-researcher.jpg" alt="Chercheuse IA" class="article-image">
+                        <div class="article-content">
+                            <h3>🤖 ChatGPT-5 Bouleverse l'Intelligence Artificielle</h3>
+                            <div class="article-meta">📅 Aujourd'hui • ⏱️ 3 minutes de lecture • 👁️ 2.1k vues</div>
+                            <p>OpenAI présente son nouveau modèle <span class="highlight">GPT-5</span>, une révolution qui promet de transformer notre rapport à l'IA. Avec des capacités de raisonnement avancées et une compréhension contextuelle inégalée...</p>
+                            <a href="#" class="read-more">Lire la suite →</a>
+                        </div>
+                    </article>
+                    
+                    <article class="article">
+                        <img src="images/quantum-computer.jpg" alt="Ordinateur quantique" class="article-image">
+                        <div class="article-content">
+                            <h3>⚡ Révolution Quantique : Google Atteint la Suprématie</h3>
+                            <div class="article-meta">📅 Hier • ⏱️ 4 minutes • 👁️ 1.8k vues</div>
+                            <p>Le processeur quantique <span class="highlight">Sycamore</span> de Google franchit une nouvelle étape historique. Cette avancée majeure ouvre la voie à des applications révolutionnaires...</p>
+                            <a href="#" class="read-more">Lire la suite →</a>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="pub-space" id="pub-actualites">
+                    📢 Espace Publicitaire Disponible - Contactez-nous !
+                </div>
+            </section>
+            
+            <!-- Section Santé -->
+            <section id="sante" class="section">
+                <h2 class="section-title">🏥 Innovations Santé</h2>
+                <div class="articles-grid">
+                    <article class="article">
+                        <img src="images/gene-therapy.jpg" alt="Thérapie génique" class="article-image">
+                        <div class="article-content">
+                            <h3>🧬 Thérapies Géniques : L'Espoir Contre les Maladies Rares</h3>
+                            <div class="article-meta">📅 Il y a 2 jours • ⏱️ 5 minutes • 👁️ 3.2k vues</div>
+                            <p>Les <span class="highlight">thérapies géniques</span> révolutionnent le traitement des maladies rares. Cette approche innovante permet de corriger directement les défauts génétiques...</p>
+                            <a href="#" class="read-more">Lire la suite →</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            
+            <!-- Section Tech -->
+            <section id="tech" class="section">
+                <h2 class="section-title">💻 Innovations Technologiques</h2>
+                <div class="articles-grid">
+                    <article class="article">
+                        <img src="images/quantum-computer.jpg" alt="Processeur révolutionnaire" class="article-image">
+                        <div class="article-content">
+                            <h3>🔥 Le Processeur qui Change Tout</h3>
+                            <div class="article-meta">📅 Il y a 3 jours • ⏱️ 4 minutes • 👁️ 2.7k vues</div>
+                            <p>Apple dévoile sa puce <span class="highlight">M4 Ultra</span> avec une architecture révolutionnaire. Performance, efficacité énergétique : tous les records sont battus...</p>
+                            <a href="#" class="read-more">Lire la suite →</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            
+            <!-- Section Innovation -->
+            <section id="innovation" class="section">
+                <h2 class="section-title">🔬 Innovations Révolutionnaires</h2>
+                <div class="articles-grid">
+                    <article class="article">
+                        <img src="images/battery-innovation.jpg" alt="Batterie du futur" class="article-image">
+                        <div class="article-content">
+                            <h3>🔋 Les Batteries du Futur Arrivent</h3>
+                            <div class="article-meta">📅 Il y a 4 jours • ⏱️ 6 minutes • 👁️ 4.1k vues</div>
+                            <p>Toyota révèle sa technologie de <span class="highlight">batteries solides</span> : recharge en 10 minutes, autonomie de 1000 km. Une révolution pour l'automobile électrique...</p>
+                            <a href="#" class="read-more">Lire la suite →</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            
+            <!-- Section Découvertes -->
+            <section id="decouvertes" class="section">
+                <h2 class="section-title">🌟 Grandes Découvertes</h2>
+                <div class="articles-grid">
+                    <article class="article">
+                        <img src="images/exoplanet-discovery.jpg" alt="Exoplanète habitable" class="article-image">
+                        <div class="article-content">
+                            <h3>🌍 Découverte d'une Terre 2.0</h3>
+                            <div class="article-meta">📅 Il y a 5 jours • ⏱️ 7 minutes • 👁️ 5.8k vues</div>
+                            <p>Le télescope James Webb identifie <span class="highlight">Kepler-442c</span>, une exoplanète potentiellement habitable. Eau liquide, atmosphère stable : tous les critères sont réunis...</p>
+                            <a href="#" class="read-more">Lire la suite →</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <script>
+        console.log('Magazine A SAVOIR chargé avec succès !');
+        
+        function showSection(sectionId) {
+            // Masquer toutes les sections
+            var sections = document.querySelectorAll('.section');
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].classList.remove('active');
+            }
+            
+            // Désactiver tous les boutons
+            var buttons = document.querySelectorAll('.tab-btn');
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove('active');
+            }
+            
+            // Afficher la section sélectionnée
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Activer le bouton correspondant
+            event.target.classList.add('active');
+        }
+        
+        function openAdmin() {
+            document.getElementById('adminPanel').classList.add('open');
+            document.getElementById('overlay').classList.add('show');
+        }
+        
+        function closeAdmin() {
+            document.getElementById('adminPanel').classList.remove('open');
+            document.getElementById('overlay').classList.remove('show');
+        }
+        
+        function generateNewImage() {
+            var type = document.getElementById('imageType').value;
+            var description = document.getElementById('imageDescription').value;
+            
+            if (!description) {
+                alert('Veuillez entrer une description pour l\'image');
+                return;
+            }
+            
+            alert('🎨 Génération d\'image en cours...\\nType: ' + type + '\\nDescription: ' + description + '\\n\\nL\'image sera ajoutée automatiquement au magazine.');
+            
+            // Simuler la génération (en réalité, vous utiliseriez vos outils de génération d'images)
+            console.log('Génération image:', type, description);
+        }
+        
+        function addArticle() {
+            var section = document.getElementById('contentSection').value;
+            var title = document.getElementById('articleTitle').value;
+            var content = document.getElementById('articleContent').value;
+            
+            if (!title || !content) {
+                alert('Veuillez remplir tous les champs');
+                return;
+            }
+            
+            alert('📝 Article ajouté avec succès !\\nSection: ' + section + '\\nTitre: ' + title);
+            
+            // Réinitialiser les champs
+            document.getElementById('articleTitle').value = '';
+            document.getElementById('articleContent').value = '';
+            
+            console.log('Nouvel article:', section, title, content);
+        }
+        
+        function addAdvertisement() {
+            var link = document.getElementById('adLink').value;
+            var text = document.getElementById('adText').value;
+            var image = document.getElementById('adImage').value;
+            
+            if (!link || !text) {
+                alert('Veuillez remplir au moins le lien et le texte');
+                return;
+            }
+            
+            alert('📢 Publicité ajoutée avec succès !');
+            
+            // Réinitialiser les champs
+            document.getElementById('adLink').value = '';
+            document.getElementById('adText').value = '';
+            document.getElementById('adImage').value = '';
+            
+            console.log('Nouvelle pub:', link, text, image);
+        }
+        
+        function generateAllImages() {
+            if (confirm('Voulez-vous regénérer toutes les images du magazine ?')) {
+                alert('🔄 Régénération de toutes les images en cours...\\nCela peut prendre quelques minutes.');
+                console.log('Régénération de toutes les images...');
+            }
+        }
+        
+        function resetContent() {
+            if (confirm('ATTENTION: Cela supprimera tout le contenu personnalisé. Êtes-vous sûr ?')) {
+                alert('🗑️ Contenu réinitialisé avec succès !');
+                console.log('Reset du contenu...');
+            }
+        }
+        
+        // Auto-génération d'images périodique (simulée)
+        setInterval(function() {
+            console.log('🔄 Vérification pour nouvelles images automatiques...');
+        }, 300000); // Toutes les 5 minutes
+    </script>
+</body>
+</html>
